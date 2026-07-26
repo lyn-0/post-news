@@ -1,0 +1,7 @@
+anthropic>=0.40
+feedparser>=6.0
+PyYAML>=6.0
+requests>=2.31
+
+# X API に直接投稿する場合（poster.py の post()）のみ必要。Buffer 経由なら不要。
+# requests-oauthlib>=1.3

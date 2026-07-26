@@ -1,0 +1,53 @@
+# ============================================
+#  興味のあるトピック設定
+#  ここを書き換えるだけで収集対象が変わります
+# ============================================
+
+timezone: Asia/Tokyo
+
+# 1回の実行で投稿する記事数。2本以上なら30分ずつずらして予約される
+posts_per_run: 1
+
+# 何時間前までの記事を候補にするか
+lookback_hours: 30
+
+# 投稿時刻（JST）。Buffer 側の予約に使うので、スクリプトの実行時刻とは独立。
+# ジョブがこの時刻より後に走った場合は翌日ぶんとして予約される。
+schedule_at: "09:30"
+
+# 本文にリンクを含めるか。
+# Buffer 経由なら X の従量課金（リンク付き $0.20）は発生しないので true でよい。
+include_link: true
+
+topics:
+  - name: "AI / LLM"
+    keywords: ["生成AI", "LLM", "Claude", "OpenAI", "AIエージェント"]
+    feeds:
+      - https://www.itmedia.co.jp/aiplus/subtop/features/rss.xml
+      - https://zenn.dev/topics/llm/feed
+
+  - name: "フロントエンド / Web開発"
+    keywords: ["Next.js", "React", "CSS", "Core Web Vitals"]
+    feeds:
+      - https://publickey1.jp/atom.xml
+      - https://zenn.dev/topics/frontend/feed
+
+  - name: "アクセシビリティ / SEO"
+    keywords: ["WCAG", "ウェブアクセシビリティ", "Google 検索 アップデート"]
+    feeds: []
+
+# はてなブックマークを「ホットさ」の指標として使う
+hatena:
+  enabled: true
+  min_users: 5      # このブクマ数未満は候補から除外
+
+# 要約に使うモデル
+#   claude-sonnet-5              … バランス型（推奨）
+#   claude-haiku-4-5-20251001    … 最安・高速
+model: claude-sonnet-5
+
+# 投稿の文体・トーン（プロンプトにそのまま渡されます）
+tone: |
+  日本語。エンジニア向け。事実ベースで誇張しない。
+  「〜だそうです」のような伝聞調は避け、断定的かつ簡潔に。
+  絵文字は使わない。ハッシュタグは最大2個まで。
