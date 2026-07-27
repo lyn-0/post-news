@@ -103,16 +103,23 @@ class BufferClient:
 
     # ---- 投稿 -----------------------------------------------------------
 
-    def create_scheduled_post(self, text: str, channel_id: str, due_at: datetime) -> dict:
-        due_utc = due_at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    def create_post(
+        self, text: str, channel_id: str, due_at: datetime | None = None
+    ) -> dict:
+        """due_at を渡せば予約投稿、None なら即時投稿（shareNow）。"""
+        if due_at is None:
+            timing = "    mode: shareNow"
+        else:
+            due_utc = due_at.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+            timing = f"    mode: customScheduled\n    dueAt: {_lit(due_utc)}"
+
         mutation = f"""
 mutation {{
   createPost(input: {{
     text: {_lit(text)}
     channelId: {_lit(channel_id)}
     schedulingType: automatic
-    mode: customScheduled
-    dueAt: {_lit(due_utc)}
+{timing}
   }}) {{
     ... on PostActionSuccess {{ post {{ id dueAt status }} }}
     ... on MutationError {{ message }}
@@ -134,23 +141,30 @@ def next_occurrence(hhmm: str, now: datetime | None = None) -> datetime:
     return target
 
 
-def publish(text: str, schedule_at: str, dry_run: bool = False) -> dict:
+def publish(
+    text: str,
+    schedule_at: str,
+    dry_run: bool = False,
+    now: bool = False,
+) -> dict:
+    """now=True なら予約せず即時投稿する（テスト実行用）。"""
     w = weighted_length(text)
     if w > 280:
         raise ValueError(f"文字数超過: {w}/280\n{text}")
 
-    due = next_occurrence(schedule_at)
+    due = None if now else next_occurrence(schedule_at)
+    when = "即時投稿" if now else f"予約 {due:%Y-%m-%d %H:%M} JST"
 
     if dry_run:
-        print(f"--- DRY RUN ({w}/280) 予約先: {due:%Y-%m-%d %H:%M} JST ---\n"
-              f"{text}\n--------------------------------------------------")
-        return {"dry_run": True, "dueAt": due.isoformat()}
+        print(f"--- DRY RUN ({w}/280) {when} ---\n"
+              f"{text}\n----------------------------------------")
+        return {"dry_run": True, "now": now}
 
     client = BufferClient()
     channel = client.resolve_x_channel()
     if channel.get("isQueuePaused"):
         print(f"  [warn] チャンネル '{channel.get('displayName')}' のキューが停止中です。"
               f"Buffer 側で再開しないと配信されません")
-    post = client.create_scheduled_post(text, channel["id"], due)
-    print(f"[buffer] 予約完了 id={post['id']} dueAt={post['dueAt']}")
+    post = client.create_post(text, channel["id"], due)
+    print(f"[buffer] {when} 完了 id={post['id']} status={post.get('status')}")
     return post
