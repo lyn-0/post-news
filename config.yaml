@@ -23,9 +23,26 @@ topics:
   - name: "AI / LLM"
     qiita_tags: ["LLM", "OpenAI", "生成AI"]
     feeds:
+      # Ledge.ai は公式RSSが無いため、有志が自動生成しているフィードを使う
+      # （https://github.com/yoshiori/ledge-ai-feed / 毎時更新）
+      - https://yoshiori.github.io/ledge-ai-feed/rss.xml
       - https://www.itmedia.co.jp/aiplus/subtop/features/rss.xml
-      - https://www.publickey1.jp/atom.xml
       - https://zenn.dev/topics/llm/feed
+
+  - name: "テック全般"
+    feeds:
+      # GIGAZINE のRSSは全カテゴリ混在（試食・アニメ・食なども流れてくる）。
+      # include_categories で技術系だけに絞る。カテゴリ名は記事下部の表記と同じ
+      - url: https://gigazine.net/news/rss_2.0/
+        include_categories:
+          - AI
+          - ソフトウェア
+          - ネットサービス
+          - ハードウェア
+          - セキュリティ
+          - ウェブアプリ
+          - サイエンス
+      - https://www.publickey1.jp/atom.xml
 
   - name: "フロントエンド / Web開発"
     qiita_tags: ["React", "Next.js", "TypeScript"]
@@ -60,6 +77,8 @@ selection:
     publickey1.jp: 1.4
     itmedia.co.jp: 1.2
     zenn.dev: 1.1
+    ledge.ai: 1.2
+    gigazine.net: 1.0
     developer.mozilla.org: 1.4
     web.dev: 1.4
     github.blog: 1.3
@@ -83,3 +102,4 @@ selection:
     "AI / LLM": "#AI"
     "フロントエンド / Web開発": "#frontend"
     "アクセシビリティ / SEO": "#a11y"
+    "テック全般": "#tech"
