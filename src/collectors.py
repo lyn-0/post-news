@@ -30,6 +30,11 @@ class Article:
     extra: dict = field(default_factory=dict)
 
     @property
+    def kind(self) -> str:
+        """収集元の種別。"zenn" / "qiita" / "feed"。ローテーションに使う。"""
+        return self.extra.get("via", "feed")
+
+    @property
     def key(self) -> str:
         """重複判定用キー。URLのクエリを落として正規化。"""
         p = urllib.parse.urlsplit(self.url)
