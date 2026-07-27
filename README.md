@@ -4,7 +4,7 @@
 **API キーは Buffer のものだけ**。LLM は使わず、スコアリングで記事を選ぶ。
 
 ```
-RSS フィード ─▶ 既出除外 ─▶ スコアで選定 ─▶ Buffer に予約 ─▶ 9:30 に X へ
+RSS + Zenn ─▶ 既出除外 ─▶ スコアで選定 ─▶ Buffer に予約 ─▶ 9:30 に X へ
    collectors.py      main.py     selector.py    poster_buffer.py    (Buffer)
 ```
 
@@ -80,6 +80,15 @@ GIGAZINE のように1本のフィードに技術・食・アニメが混在す�
 `lookback_hours`（既定30時間）以内に配信された記事だけになる。フィードが2〜3本だと
 候補がゼロになる日が出る。5〜10本を目安に。
 
+### Zenn
+
+Zenn の RSS にはいいね数が入っていないため、サイト内部の `/api/articles` を使っている。
+`zenn.min_likes`（既定100）でいいね数の下限を、`zenn_topics` でトピックを指定する。
+トピック名は `zenn.dev/topics/xxx` の `xxx` の部分。
+
+これは Zenn が公式にドキュメント化した API ではない。予告なく変わる可能性があるので、
+壊れたら `collectors.py` の `fetch_zenn()` だけ直せばよい設計にしてある。
+
 ### Qiita を併用したい場合
 
 `qiita.enabled: true` にすると、Qiita API から LGTM 数付きで記事を集める。
@@ -124,24 +133,18 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
 - **重複投稿の防止**: `state/posted.json` に投稿済み URL のハッシュを 60 日分保存し、
   ワークフローが自動でコミットして戻す。ローカル実行と Actions 実行を混ぜると
   コンフリクトするので、どちらかに寄せるのが無難。
-- **選定ロジック**: スコアは `(1 + log(LGTM数)) × 新しさの減衰 × 媒体の重み`。
+- **選定ロジック**: スコアは `(1 + log(いいね数)) × 新しさの減衰 × 媒体の重み`。
   対数を使うのは 100 LGTM と 1000 LGTM の差を圧縮するため。減衰の半減期は既定 12 時間。
   RSS フィード由来の記事は LGTM を持たないので `feed_base_score` を代わりに使う
   （0 にすると Qiita 記事しか選ばれなくなる）。
+- **半減期は収集元ごとに自動で決まる**: 既定（`recency_half_life_hours: null`）では
+  「その記事を集めた収集ウィンドウの 1/4」を半減期に使う。ニュースRSSは30時間の窓なので
+  半減期7.5時間、Zenn は60日の窓なので半減期15日。収集元によって時間の流れが違うため、
+  共通の固定値にすると必ずどちらかが一方的に負ける。数値を入れれば全ソース共通に固定できる。
 - **LGTM の下限と収集期間はセット**: `qiita.min_likes` は Qiita API 側で絞る
   （`likes_count:>=N` をクエリに付ける）。LGTM が積み上がるには数日かかるので、
   Qiita だけ `qiita.lookback_days`（既定7日）という別の窓を使う。RSS は
   `lookback_hours`（既定30時間）のまま。
-  **`lookback_days` を変えたら `recency_half_life_hours` も必ず見直すこと。**
-  目安は「収集期間の 1/4」。60日の窓なら 336h（14日）。釣り合っていないと
-  起動時に警告が出る。
-
-  | qiita.lookback_days | recency_half_life_hours |
-  |---|---|
-  | 2日 | 12 |
-  | 7日 | 48 |
-  | 30日 | 168 |
-  | 60日 | 336 |
 
 - **取得件数の上限**: Qiita は1タグにつき1リクエスト・最大100件しか取らない。
   収集期間を60日にすると人気タグでは100件を超えることがあるが、API は新しい順に
@@ -180,6 +183,8 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
 | 古い記事ばかり選ばれる | `recency_half_life_hours` を小さく（例 6） |
 | 話題性より媒体を重視したい | `source_weights` に信頼媒体を追加、値を上げる |
 | 候補がゼロになる日がある | フィードを増やす、`lookback_hours` を伸ばす |
+| Zenn ばかり選ばれる | `zenn.min_likes` を上げる、`feed_base_score` を上げる |
+| Zenn が全く選ばれない | `zenn.min_likes` を下げる、`zenn.lookback_days` を伸ばす |
 | 同じ媒体ばかり選ばれる | `source_weights` の値を下げる／他媒体を上げる |
 | Qiita ばかり選ばれる | `feed_base_score` を上げる（既定 8） |
 | RSS ばかり選ばれる | `feed_base_score` を下げる |
