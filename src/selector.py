@@ -125,16 +125,28 @@ def build_text(article: Article, cfg: dict, budget: int) -> str:
     return fit(title, body_budget) + suffix
 
 
+def warn_if_mismatched(cfg: dict, lookback_days: float) -> None:
+    """収集期間と半減期が釣り合っていないと、窓を広げた意味がなくなる。"""
+    half_life = float(cfg.get("recency_half_life_hours", 12))
+    oldest_ratio = 0.5 ** (lookback_days * 24 / half_life)
+    if oldest_ratio < 0.02:
+        suggested = int(lookback_days * 24 / 4)
+        print(
+            f"  [warn] 収集期間{lookback_days:g}日に対して半減期{half_life:g}hは短すぎます。"
+            f"最古の記事のスコアが新着の{oldest_ratio:.2%}にしかならず、まず選ばれません。"
+            f"\n         selection.recency_half_life_hours を {suggested} 程度に。"
+        )
+
+
 def pick(
     articles: list[Article],
     count: int,
     cfg: dict,
     include_link: bool,
 ) -> list[dict]:
-    """summarize.pick_and_write と同じ形の結果を返す。"""
+    """スコアリングで投稿する記事を選ぶ。"""
     now = datetime.now(timezone.utc)
     patterns = DEFAULT_EXCLUDE + list(cfg.get("exclude_patterns", []) or [])
-    min_likes = int(cfg.get("min_likes", 0))
     min_len = int(cfg.get("min_title_length", 8))
 
     pool = [
@@ -142,12 +154,10 @@ def pick(
         for a in articles
         if not is_excluded(a.title, patterns)
         and len(a.title) >= min_len
-        # 指標を持つ記事（Qiita）にだけ下限を課す。RSS 由来は対象外
-        and (not a.metric or a.hot_score >= min_likes)
     ]
     dropped = len(articles) - len(pool)
     if dropped:
-        print(f"[select] 除外 {dropped} 件（PR/短すぎ/LGTM不足）")
+        print(f"[select] 除外 {dropped} 件（PR/広告/タイトル短すぎ）")
     if not pool:
         return []
 
