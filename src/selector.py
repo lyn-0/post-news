@@ -65,11 +65,24 @@ def hotness(article: Article, cfg: dict) -> float:
     return 1.0 + math.log1p(raw)
 
 
+def half_life_for(article: Article, cfg: dict) -> float:
+    """減衰の半減期。既定では「その記事を集めた収集ウィンドウの1/4」を使う。
+
+    収集元ごとに時間の流れが違うのが理由。ニュースRSSは30時間の窓で集めるので
+    数時間で古くなるが、Zenn の「♥100以上」は60日の窓なので数日前でも十分新しい。
+    共通の固定値を使うと必ずどちらかが一方的に負けるため、窓に対する相対で測る。
+    recency_half_life_hours を設定すれば全ソース共通の固定値に上書きできる。
+    """
+    override = cfg.get("recency_half_life_hours")
+    if override:
+        return float(override)
+    return max(article.window_hours / 4, 1.0)
+
+
 def score(article: Article, cfg: dict, now: datetime) -> float:
     """ホットさ × 新しさ × 媒体重み。"""
-    half_life = float(cfg.get("recency_half_life_hours", 12))
     age_h = max((now - article.published).total_seconds() / 3600, 0.0)
-    recency = 0.5 ** (age_h / half_life)
+    recency = 0.5 ** (age_h / half_life_for(article, cfg))
     return hotness(article, cfg) * recency * source_weight(
         article, cfg.get("source_weights", {}) or {}
     )
@@ -123,19 +136,6 @@ def build_text(article: Article, cfg: dict, budget: int) -> str:
 
     body_budget = budget - weighted_length(suffix)
     return fit(title, body_budget) + suffix
-
-
-def warn_if_mismatched(cfg: dict, lookback_days: float) -> None:
-    """収集期間と半減期が釣り合っていないと、窓を広げた意味がなくなる。"""
-    half_life = float(cfg.get("recency_half_life_hours", 12))
-    oldest_ratio = 0.5 ** (lookback_days * 24 / half_life)
-    if oldest_ratio < 0.02:
-        suggested = int(lookback_days * 24 / 4)
-        print(
-            f"  [warn] 収集期間{lookback_days:g}日に対して半減期{half_life:g}hは短すぎます。"
-            f"最古の記事のスコアが新着の{oldest_ratio:.2%}にしかならず、まず選ばれません。"
-            f"\n         selection.recency_half_life_hours を {suggested} 程度に。"
-        )
 
 
 def pick(
