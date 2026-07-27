@@ -1,7 +1,85 @@
-anthropic>=0.40
-feedparser>=6.0
-PyYAML>=6.0
-requests>=2.31
+# ============================================
+#  興味のあるトピック設定
+#  ここを書き換えるだけで収集対象が変わります
+# ============================================
 
-# X API に直接投稿する場合（poster.py の post()）のみ必要。Buffer 経由なら不要。
-# requests-oauthlib>=1.3
+timezone: Asia/Tokyo
+
+# 1回の実行で投稿する記事数。2本以上なら30分ずつずらして予約される
+posts_per_run: 1
+
+# 何時間前までの記事を候補にするか
+lookback_hours: 30
+
+# 投稿時刻（JST）。Buffer 側の予約に使うので、スクリプトの実行時刻とは独立。
+# ジョブがこの時刻より後に走った場合は翌日ぶんとして予約される。
+schedule_at: "09:30"
+
+# 本文にリンクを含めるか。
+# Buffer 経由なら X の従量課金（リンク付き $0.20）は発生しないので true でよい。
+include_link: true
+
+topics:
+  - name: "AI / LLM"
+    # Qiita のタグ（https://qiita.com/tags で正確な表記を確認できる）
+    qiita_tags: ["LLM", "OpenAI", "生成AI", "ChatGPT"]
+    # Qiita の検索構文をそのまま書ける。タグ以外で絞りたいときに
+    qiita_queries: []
+    feeds:
+      - https://www.itmedia.co.jp/aiplus/subtop/features/rss.xml
+
+  - name: "フロントエンド / Web開発"
+    qiita_tags: ["React", "Next.js", "TypeScript", "CSS"]
+    qiita_queries: []
+    feeds:
+      - https://publickey1.jp/atom.xml
+
+  - name: "アクセシビリティ / SEO"
+    qiita_tags: ["アクセシビリティ", "SEO"]
+    qiita_queries: []
+    feeds: []
+
+# Qiita API を「ホットさ」の指標として使う（LGTM数を取得する）
+qiita:
+  enabled: true
+  # 認証なしでも動くが IP あたり 60回/時。トークンがあると 1000回/時。
+  # https://qiita.com/settings/applications で発行し、環境変数に入れる（read_qiita 権限のみでよい）
+  token_env: QIITA_TOKEN
+
+# ============================================
+#  記事の選定ルール（LLMは使わない）
+# ============================================
+selection:
+  # 新しさの半減期（時間）。小さいほど「今朝出た記事」が有利になる
+  recency_half_life_hours: 12
+
+  # 信頼する媒体に加点。URL か媒体名に含まれる文字列でマッチ
+  source_weights:
+    publickey1.jp: 1.4
+    itmedia.co.jp: 1.2
+    zenn.dev: 1.1
+    developer.mozilla.org: 1.4
+    web.dev: 1.4
+    github.blog: 1.3
+
+  # この LGTM 数未満の Qiita 記事は投稿候補にしない。RSS 由来の記事には適用されない
+  min_likes: 3
+
+  # RSS フィード由来の記事に与える「LGTM 相当」の下駄。
+  # 0 にすると Qiita 記事しか選ばれなくなる。上げすぎると RSS ばかりになる
+  feed_base_score: 8
+
+  # タイトルがこれより短い記事は捨てる（文字数）
+  min_title_length: 8
+
+  # タイトル末尾の媒体名（" - ITmedia NEWS" など）を落とす
+  strip_source_from_title: true
+
+  # 追加の除外パターン（正規表現）。PR・広告・まとめ系は既定で除外済み
+  exclude_patterns: []
+
+  # トピックごとに末尾へ付けるハッシュタグ
+  hashtags_by_topic:
+    "AI / LLM": "#AI"
+    "フロントエンド / Web開発": "#frontend"
+    "アクセシビリティ / SEO": "#a11y"
