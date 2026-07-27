@@ -75,13 +75,27 @@ python src/main.py --dry-run
 
 ### 5. 有効化
 
-workflow を push すると cron が動きはじめる。最初は Actions タブから
-`workflow_dispatch` → dry_run = true で手動実行して確認する。
+workflow を push すると cron が動きはじめる。Actions タブから手動実行するときは
+`mode` を選ぶ。
+
+| mode | 挙動 |
+|---|---|
+| `dry-run`（既定） | Buffer にも X にも何も送らず、選ばれた記事だけログに出す |
+| `post-now` | 9:30 を待たず**今すぐ投稿する**。動作確認用 |
+| `schedule` | 通常どおり 9:30 JST に予約する |
+
+cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を確認し、
+納得したら `post-now` で実際に流れるところまで通す、という順番がよい。
+
+`post-now` は本当に投稿されるので注意。実行すると `state/posted.json` にも
+記録され、その記事は二度と選ばれなくなる。
 
 ## 動作の詳細
 
 - **予約時刻**: `config.yaml` の `schedule_at`（既定 09:30 JST）。実行時点でその時刻を
   過ぎていれば自動的に翌日ぶんとして予約される。`posts_per_run` が2以上なら 30 分ずつずらす。
+  `--now`（Actions では `post-now`）を付けると予約せず即時投稿になる
+  （Buffer の `mode: shareNow`）。
 - **重複投稿の防止**: `state/posted.json` に投稿済み URL のハッシュを 60 日分保存し、
   ワークフローが自動でコミットして戻す。ローカル実行と Actions 実行を混ぜると
   コンフリクトするので、どちらかに寄せるのが無難。
