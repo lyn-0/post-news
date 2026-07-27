@@ -8,8 +8,10 @@ timezone: Asia/Tokyo
 # 1回の実行で投稿する記事数。2本以上なら30分ずつずらして予約される
 posts_per_run: 1
 
-# 何時間前までの記事を候補にするか
-lookback_hours: 30
+# 何時間前までの記事を候補にするか。
+# 短すぎると候補が枯れる。更新頻度の低いフィードを含むなら 72〜120 くらい必要。
+# ここを伸ばしても、新しい記事ほど有利になる減衰は効いたまま
+lookback_hours: 96
 
 # 投稿時刻（JST）。Buffer 側の予約に使うので、スクリプトの実行時刻とは独立。
 # ジョブがこの時刻より後に走った場合は翌日ぶんとして予約される。
@@ -21,40 +23,50 @@ include_link: true
 
 topics:
   - name: "AI / LLM"
-    qiita_tags: ["LLM", "OpenAI", "生成AI"]
     zenn_topics: ["llm", "生成ai", "openai"]
+    qiita_tags: ["LLM", "OpenAI", "生成AI"]
     feeds:
       # Ledge.ai は公式RSSが無いため、有志が自動生成しているフィードを使う
       # （https://github.com/yoshiori/ledge-ai-feed / 毎時更新）
       - https://yoshiori.github.io/ledge-ai-feed/rss.xml
-      - https://www.itmedia.co.jp/aiplus/subtop/features/rss.xml
+      # ITmedia の正式なフィードURL一覧: https://corp.itmedia.co.jp/media/rss_list/
+      - https://rss.itmedia.co.jp/rss/2.0/aiplus.xml
 
   - name: "テック全般"
     feeds:
       # GIGAZINE のRSSは全カテゴリ混在（試食・アニメ・食なども流れてくる）。
-      # include_categories で技術系だけに絞る。カテゴリ名は記事下部の表記と同じ
+      # include（許可リスト）は表記が1文字でも違うと全滅するので、
+      # exclude（除外リスト）で不要なものだけ落とす。こちらは外れても記事は残る。
+      # 実際のカテゴリ名は `--check-feeds` の出力からコピーすること
       - url: https://gigazine.net/news/rss_2.0/
-        include_categories:
-          - AI
-          - ソフトウェア
-          - ネットサービス
-          - ハードウェア
-          - セキュリティ
-          - ウェブアプリ
-          - サイエンス
+        exclude_categories:
+          - 試食
+          - 食
+          - アニメ
+          - マンガ
+          - 映画
+          - ゲーム
+          - 生き物
+          - 乗り物
+          - 広告
+          - お知らせ
       - https://www.publickey1.jp/atom.xml
+      - https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
+      - https://rss.itmedia.co.jp/rss/2.0/news_security.xml
 
   - name: "フロントエンド / Web開発"
-    qiita_tags: ["React", "Next.js", "TypeScript"]
     zenn_topics: ["react", "nextjs", "typescript", "frontend"]
+    qiita_tags: ["React", "Next.js", "TypeScript"]
     feeds:
+      - https://rss.itmedia.co.jp/rss/2.0/ait.xml
       - https://developer.mozilla.org/en-US/blog/rss.xml
       - https://github.blog/feed/
 
   - name: "アクセシビリティ / SEO"
-    qiita_tags: ["アクセシビリティ", "SEO"]
     zenn_topics: ["accessibility", "seo"]
-    feeds: []
+    qiita_tags: ["アクセシビリティ", "SEO"]
+    feeds:
+      - https://rss.itmedia.co.jp/rss/2.0/marketing_web.xml
 
 # Zenn はいいね数（♥）が RSS に入っていないため、サイト内部の API を使う。
 # トピック名は各トピックの `zenn_topics` に書く（URL の zenn.dev/topics/xxx の xxx）
@@ -67,8 +79,10 @@ zenn:
   # 収集期間（日）。♥100 まで積み上がるには時間がかかるので短くしすぎない
   lookback_days: 60
 
-  # 1トピックあたり何ページ取るか（1ページ48件、新しい順）
-  max_pages: 3
+  # 1トピックあたり何ページ取るか（1ページ48件、新しい順）。
+  # 新しい順に返るため、3ページ（144件）では直近2〜3週間しか見られず、
+  # ♥100 に達している記事がほとんど拾えない。窓の外に出たら自動で打ち切る
+  max_pages: 10
 
 # Qiita を使う場合はここを true に。設定はそのまま残してある
 qiita:
@@ -108,6 +122,7 @@ selection:
   source_weights:
     publickey1.jp: 1.4
     itmedia.co.jp: 1.2
+    atmarkit.itmedia.co.jp: 1.2
     zenn.dev: 1.0
     ledge.ai: 1.2
     gigazine.net: 1.0
@@ -123,8 +138,14 @@ selection:
   # タイトルがこれより短い記事は捨てる（文字数）
   min_title_length: 8
 
-  # タイトル末尾の媒体名（" - ITmedia NEWS" など）を落とす
-  strip_source_from_title: true
+  # タイトル末尾の媒体名（" - ITmedia NEWS" など）を落とすか。
+  # 多くの媒体の RSS 利用条件は「発信元の表示」を求めており、
+  # アイティメディアは発信元を表示しないことを明確に禁止事項としている。
+  # 落とす必要がなければ false のままにしておくこと
+  strip_source_from_title: false
+
+  # 本文に媒体名を添える（タイトルに含まれていない場合のみ）
+  show_source: true
 
   # 追加の除外パターン（正規表現）。PR・広告・まとめ系は既定で除外済み
   exclude_patterns: []
