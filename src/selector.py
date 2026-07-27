@@ -131,11 +131,40 @@ def fit(text: str, budget: int) -> str:
     return out.rstrip(BREAK_CHARS) + "…"
 
 
+def source_label(article: Article) -> str:
+    """媒体名。フィードの <title> から取る（"ITmedia AI＋ 最新記事一覧" など）。"""
+    name = (article.source or "").strip()
+    for sep in (" 最新記事一覧", " 記事一覧", " - ", "｜", "|"):
+        name = name.split(sep)[0].strip()
+    return name[:20]
+
+
 def build_text(article: Article, cfg: dict, budget: int) -> str:
-    title = clean_title(article.title, cfg.get("strip_source_from_title", True))
+    """投稿文を組み立てる。
+
+    発信元の表示は多くの媒体の RSS 利用条件で求められている
+    （例: アイティメディアは「RSSの発信元を表示しないこと」を禁止事項としている）。
+    そのため既定では媒体名を残し、タイトルからの媒体名の削除も行わない。
+    """
+    title = clean_title(article.title, cfg.get("strip_source_from_title", False))
 
     tag = (cfg.get("hashtags_by_topic", {}) or {}).get(article.topic, "")
-    suffix = f"\n{tag}" if tag else ""
+
+    src = ""
+    if cfg.get("show_source", True):
+        label = source_label(article)
+        # タイトルに既に媒体名が入っているなら重ねない
+        if label and label not in title:
+            src = label
+
+    if src and tag:
+        suffix = f"\n{src} {tag}"
+    elif src:
+        suffix = f"\n{src}"
+    elif tag:
+        suffix = f"\n{tag}"
+    else:
+        suffix = ""
 
     body_budget = budget - weighted_length(suffix)
     return fit(title, body_budget) + suffix
