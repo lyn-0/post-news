@@ -37,7 +37,7 @@ def load_state() -> dict:
 def save_state(state: dict) -> None:
     cutoff = (datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)).isoformat()
     state["posted"] = {k: v for k, v in state["posted"].items() if v.get("at", "") >= cutoff}
-    # last_kind は posted と同じ階層に置く（掃除対象にしない）
+    # cycle_index は posted と同じ階層に置く（掃除対象にしない）
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(
         json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8"
@@ -134,6 +134,40 @@ def check_feeds(config: dict) -> int:
     return 0
 
 
+def simulate(config: dict, days: int) -> int:
+    """投稿せずに、この先 N 回ぶんの選ばれ方を並べて見せる。
+    dry-run は状態が進まないので、比率の確認にはこちらを使う。"""
+    from copy import copy
+
+    state = load_state()
+    articles = collect(config)
+    articles = [a for a in articles if a.key not in state["posted"]]
+    sel = dict(config.get("selection", {}) or {}, show_ranking=False)
+    include_link = config.get("include_link", True)
+    idx = int(state.get("cycle_index", 0))
+
+    print(f"\n=== {days}回ぶんのシミュレーション（実際には投稿しません）===")
+    used: set[str] = set()
+    counts: dict[str, int] = {}
+    for n in range(1, days + 1):
+        pool = [a for a in articles if a.key not in used]
+        got = pick(pool, 1, sel, include_link, cycle_index=idx)
+        if not got:
+            print(f"  {n:>2}回目: 候補切れ")
+            break
+        art = got[0]["article"]
+        used.add(art.key)
+        counts[art.kind] = counts.get(art.kind, 0) + 1
+        idx += 1
+        metric = f"{art.metric}{art.hot_score}" if art.metric else "-"
+        print(f"  {n:>2}回目: [{art.kind:5}] {metric:>7}  {art.title[:44]}")
+
+    total = sum(counts.values()) or 1
+    print("\n内訳: " + " / ".join(
+        f"{k} {v}回 ({v / total:.0%})" for k, v in sorted(counts.items())))
+    return 0
+
+
 def slot_for(schedule_at: str, index: int) -> str:
     """複数本投稿するとき、30分ずつずらしたスロットを返す。"""
     hh, mm = (int(x) for x in schedule_at.split(":"))
@@ -152,6 +186,8 @@ def main() -> int:
                     help="チャンネル状態＋直近の投稿の配信結果を表示して終了")
     ap.add_argument("--check-feeds", action="store_true",
                     help="設定した RSS フィードが取得できるか確認して終了")
+    ap.add_argument("--simulate", type=int, metavar="N",
+                    help="この先N回ぶんの選ばれ方を投稿せずに確認する")
     args = ap.parse_args()
 
     if args.channels or args.diagnose:
@@ -161,6 +197,9 @@ def main() -> int:
 
     if args.check_feeds:
         return check_feeds(config)
+
+    if args.simulate:
+        return simulate(config, args.simulate)
     include_link = config.get("include_link", True)
     schedule_at = str(config.get("schedule_at", "09:30"))
     state = load_state()
@@ -181,7 +220,7 @@ def main() -> int:
         count=config.get("posts_per_run", 1),
         cfg=config.get("selection", {}) or {},
         include_link=include_link,
-        last_kind=state.get("last_kind"),
+        cycle_index=int(state.get("cycle_index", 0)),
     )
     if not picks:
         print("[skip] 投稿に値する記事が選ばれませんでした")
@@ -210,7 +249,7 @@ def main() -> int:
                 "title": art.title,
                 "url": art.url,
             }
-            state["last_kind"] = art.kind
+            state["cycle_index"] = int(state.get("cycle_index", 0)) + 1
         time.sleep(1)
 
     if not args.dry_run:
