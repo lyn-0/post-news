@@ -61,8 +61,24 @@ def _strip(html: str) -> str:
     return re.sub(r"<[^>]+>", "", html or "").strip()
 
 
-def fetch_feed(url: str, topic: str, since: datetime) -> list[Article]:
-    """通常の RSS / Atom フィードから記事を取得。"""
+def _entry_categories(entry) -> list[str]:
+    """RSS の <category> / Atom の <category term>。GIGAZINE のような
+    全カテゴリ混在フィードを絞り込むのに使う。"""
+    return [t.get("term", "") for t in (getattr(entry, "tags", None) or []) if t.get("term")]
+
+
+def fetch_feed(
+    url: str,
+    topic: str,
+    since: datetime,
+    include_categories: list[str] | None = None,
+    exclude_categories: list[str] | None = None,
+) -> list[Article]:
+    """通常の RSS / Atom フィードから記事を取得。
+
+    include_categories を指定すると、そのカテゴリを持つ記事だけを残す。
+    GIGAZINE のように1本のフィードに食・アニメ・IT が混在する媒体で有効。
+    """
     try:
         res = requests.get(url, headers={"User-Agent": UA}, timeout=20)
         res.raise_for_status()
@@ -80,6 +96,13 @@ def fetch_feed(url: str, topic: str, since: datetime) -> list[Article]:
         link = e.get("link")
         if not link:
             continue
+
+        cats = _entry_categories(e)
+        if include_categories and not any(c in include_categories for c in cats):
+            continue
+        if exclude_categories and any(c in exclude_categories for c in cats):
+            continue
+
         out.append(
             Article(
                 title=_strip(e.get("title", "")),
@@ -88,9 +111,17 @@ def fetch_feed(url: str, topic: str, since: datetime) -> list[Article]:
                 topic=topic,
                 published=pub,
                 summary=_strip(e.get("summary", "")),
+                extra={"categories": cats},
             )
         )
     return out
+
+
+def normalize_feed(entry) -> dict:
+    """feeds: は文字列でも dict でも書けるようにする。"""
+    if isinstance(entry, str):
+        return {"url": entry}
+    return entry
 
 
 def fetch_qiita(
@@ -99,6 +130,7 @@ def fetch_qiita(
     since: datetime,
     token: str | None = None,
     per_page: int = 100,
+    min_likes: int = 0,
 ) -> list[Article]:
     """Qiita API v2 の記事一覧。LGTM数が「ホットさ」の指標になる。
 
@@ -108,6 +140,9 @@ def fetch_qiita(
     # created 絞り込みは日付単位なので、時刻の端数は切り捨てて広めに取る
     since_date = since.astimezone(JST).strftime("%Y-%m-%d")
     full_query = f"{query} created:>={since_date}"
+    if min_likes > 0:
+        # API側で絞る。取得件数を節約でき、per_page の上限に押し出されにくくなる
+        full_query += f" likes_count:>={min_likes}"
 
     headers = {"User-Agent": UA}
     if token:
@@ -162,27 +197,41 @@ def fetch_qiita(
 
 
 def collect(config: dict) -> list[Article]:
-    since = datetime.now(timezone.utc) - timedelta(hours=config.get("lookback_hours", 30))
+    now = datetime.now(timezone.utc)
+    since = now - timedelta(hours=config.get("lookback_hours", 30))
+
     qiita_cfg = config.get("qiita", {}) or {}
     token = os.environ.get(qiita_cfg.get("token_env", "QIITA_TOKEN")) or None
+    qiita_min_likes = int(qiita_cfg.get("min_likes", 0))
+    # LGTM が積み上がるには時間がかかるので、Qiita は RSS より長い窓で見る
+    qiita_since = now - timedelta(days=float(qiita_cfg.get("lookback_days", 7)))
+
     seen: dict[str, Article] = {}
 
-    if qiita_cfg.get("enabled") and not token:
-        print("[collect] Qiita: 認証なし（60回/時）。QIITA_TOKEN があれば 1000回/時になります")
+    if qiita_cfg.get("enabled"):
+        cond = f"LGTM{qiita_min_likes}以上 / 過去{qiita_cfg.get('lookback_days', 7)}日"
+        auth = "トークンあり" if token else "認証なし(60回/時)"
+        print(f"[collect] Qiita: {cond} / {auth}")
 
     for topic in config.get("topics", []):
         name = topic["name"]
         print(f"[collect] {name}")
 
-        for feed_url in topic.get("feeds") or []:
-            for art in fetch_feed(feed_url, name, since):
+        for raw in topic.get("feeds") or []:
+            f = normalize_feed(raw)
+            for art in fetch_feed(
+                f["url"], name, since,
+                f.get("include_categories"), f.get("exclude_categories"),
+            ):
                 seen.setdefault(art.key, art)
 
         if qiita_cfg.get("enabled"):
             queries = [f"tag:{t}" for t in topic.get("qiita_tags") or []]
             queries += list(topic.get("qiita_queries") or [])
             for q in queries:
-                for art in fetch_qiita(q, name, since, token):
+                for art in fetch_qiita(
+                    q, name, qiita_since, token, min_likes=qiita_min_likes
+                ):
                     prev = seen.get(art.key)
                     if prev is None or art.hot_score > prev.hot_score:
                         seen[art.key] = art
