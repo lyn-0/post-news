@@ -56,8 +56,13 @@ BUFFER_API_KEY=... python src/main.py --channels
 設定したら、まず疎通を確認する:
 
 ```bash
-python src/main.py --check-feeds
+python src/main.py --check-feeds       # フィードが取れるか確認
+python src/main.py --simulate 10       # この先10回ぶんの選ばれ方を確認
 ```
+
+`--simulate` は投稿せずに、収集元の比率と実際に選ばれる記事を並べて見せる。
+`--dry-run` は状態（`cycle_index`）が進まないため何度実行しても同じ結果になるので、
+比率の確認にはこちらを使うこと。
 
 各フィードの取得件数と最新記事の鮮度が出る。`✗` が付いたものは URL が違うか配信が
 止まっている。取れないフィードがあっても実行時は警読み飛ばすので落ちはしないが、
@@ -137,15 +142,24 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
   対数を使うのは 100 LGTM と 1000 LGTM の差を圧縮するため。減衰の半減期は既定 12 時間。
   RSS フィード由来の記事は LGTM を持たないので `feed_base_score` を代わりに使う
   （0 にすると Qiita 記事しか選ばれなくなる）。
-- **収集元のローテーション**: `rotate_sources: true`（既定）だと、前回投稿した収集元
-  （`zenn` / `feed` / `qiita`）以外を優先する。前回の種別は `state/posted.json` の
-  `last_kind` に記録される。他の種別に候補が無ければ通常どおり最高スコアを選ぶ。
+- **収集元の比率（source_cycle）**: 1回の実行で枠を1つ消化し、リストの先頭から順に回る。
+  既定は `[feed, feed, feed, zenn]` で「RSS 3回 : Zenn 1回」の4日周期。
+  現在位置は `state/posted.json` の `cycle_index` に記録される。
+
+  ```yaml
+  source_cycle: [feed, feed, feed, zenn]  # 4回に1回だけ Zenn
+  source_cycle: [feed]                    # Zenn は候補が他に無いときだけ
+  source_cycle: []                        # ローテーションせず純粋なスコア順
+  ```
 
   これが必要な理由は、収集元によってスコアの出方が構造的に違うから。Zenn の
   「♥100以上・60日窓」の記事は2週間経ってもスコア4前後を保つが、ニュースRSSには
   エンゲージメント指標が無く時間で減衰するだけなので、単一のスコアで比べると
-  必ず Zenn に偏る。`feed_base_score` をいくら上げても構造は変わらないため、
-  交互に出すほうが確実。
+  必ず Zenn に偏る。`feed_base_score` をいくら上げても構造は変わらない。
+
+  枠に該当する候補が無い日はスコア順にフォールバックする（投稿が飛ぶことはない）。
+  ログに「今回の枠は feed ですが候補がないため」と出たら、RSS の候補が
+  足りていないサイン。フィードを増やすか `lookback_hours` を伸ばす。
 - **半減期の下限**: `min_half_life_hours`（既定24）。1日1回しか投稿しないので、
   これより短いと前夜のニュースが朝の実行時点で減衰しきってしまう。
 - **半減期は収集元ごとに自動で決まる**: 既定（`recency_half_life_hours: null`）では
@@ -194,7 +208,7 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
 | 古い記事ばかり選ばれる | `recency_half_life_hours` を小さく（例 6） |
 | 話題性より媒体を重視したい | `source_weights` に信頼媒体を追加、値を上げる |
 | 候補がゼロになる日がある | フィードを増やす、`lookback_hours` を伸ばす |
-| Zenn ばかり選ばれる | `rotate_sources: true`（既定）。数値調整より確実 |
+| Zenn ばかり選ばれる | `source_cycle` の `feed` を増やす。数値調整より確実 |
 | RSS が全く選ばれない | `min_half_life_hours` を上げる（既定24） |
 | 選ばれ方の理由が知りたい | `show_ranking: true`（既定）でスコア内訳がログに出る |
 | 同じ媒体ばかり選ばれる | `source_weights` の値を下げる／他媒体を上げる |
