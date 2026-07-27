@@ -137,6 +137,17 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
   対数を使うのは 100 LGTM と 1000 LGTM の差を圧縮するため。減衰の半減期は既定 12 時間。
   RSS フィード由来の記事は LGTM を持たないので `feed_base_score` を代わりに使う
   （0 にすると Qiita 記事しか選ばれなくなる）。
+- **収集元のローテーション**: `rotate_sources: true`（既定）だと、前回投稿した収集元
+  （`zenn` / `feed` / `qiita`）以外を優先する。前回の種別は `state/posted.json` の
+  `last_kind` に記録される。他の種別に候補が無ければ通常どおり最高スコアを選ぶ。
+
+  これが必要な理由は、収集元によってスコアの出方が構造的に違うから。Zenn の
+  「♥100以上・60日窓」の記事は2週間経ってもスコア4前後を保つが、ニュースRSSには
+  エンゲージメント指標が無く時間で減衰するだけなので、単一のスコアで比べると
+  必ず Zenn に偏る。`feed_base_score` をいくら上げても構造は変わらないため、
+  交互に出すほうが確実。
+- **半減期の下限**: `min_half_life_hours`（既定24）。1日1回しか投稿しないので、
+  これより短いと前夜のニュースが朝の実行時点で減衰しきってしまう。
 - **半減期は収集元ごとに自動で決まる**: 既定（`recency_half_life_hours: null`）では
   「その記事を集めた収集ウィンドウの 1/4」を半減期に使う。ニュースRSSは30時間の窓なので
   半減期7.5時間、Zenn は60日の窓なので半減期15日。収集元によって時間の流れが違うため、
@@ -183,8 +194,9 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
 | 古い記事ばかり選ばれる | `recency_half_life_hours` を小さく（例 6） |
 | 話題性より媒体を重視したい | `source_weights` に信頼媒体を追加、値を上げる |
 | 候補がゼロになる日がある | フィードを増やす、`lookback_hours` を伸ばす |
-| Zenn ばかり選ばれる | `zenn.min_likes` を上げる、`feed_base_score` を上げる |
-| Zenn が全く選ばれない | `zenn.min_likes` を下げる、`zenn.lookback_days` を伸ばす |
+| Zenn ばかり選ばれる | `rotate_sources: true`（既定）。数値調整より確実 |
+| RSS が全く選ばれない | `min_half_life_hours` を上げる（既定24） |
+| 選ばれ方の理由が知りたい | `show_ranking: true`（既定）でスコア内訳がログに出る |
 | 同じ媒体ばかり選ばれる | `source_weights` の値を下げる／他媒体を上げる |
 | Qiita ばかり選ばれる | `feed_base_score` を上げる（既定 8） |
 | RSS ばかり選ばれる | `feed_base_score` を下げる |
