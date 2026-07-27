@@ -37,6 +37,7 @@ def load_state() -> dict:
 def save_state(state: dict) -> None:
     cutoff = (datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)).isoformat()
     state["posted"] = {k: v for k, v in state["posted"].items() if v.get("at", "") >= cutoff}
+    # last_kind は posted と同じ階層に置く（掃除対象にしない）
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(
         json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8"
@@ -180,6 +181,7 @@ def main() -> int:
         count=config.get("posts_per_run", 1),
         cfg=config.get("selection", {}) or {},
         include_link=include_link,
+        last_kind=state.get("last_kind"),
     )
     if not picks:
         print("[skip] 投稿に値する記事が選ばれませんでした")
@@ -208,6 +210,7 @@ def main() -> int:
                 "title": art.title,
                 "url": art.url,
             }
+            state["last_kind"] = art.kind
         time.sleep(1)
 
     if not args.dry_run:
