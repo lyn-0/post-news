@@ -42,6 +42,14 @@ topics:
 # Qiita API を「ホットさ」の指標として使う（LGTM数を取得する）
 qiita:
   enabled: true
+
+  # この LGTM 数未満の記事は取得しない（Qiita API 側で絞る）
+  min_likes: 100
+
+  # Qiita の収集期間（日）。RSS 用の lookback_hours とは別。
+  # LGTM が積み上がるには時間がかかるので、min_likes を上げるならここも伸ばす。
+  # ここを変えたら selection.recency_half_life_hours も一緒に見直すこと。
+  lookback_days: 60
   # 認証なしでも動くが IP あたり 60回/時。トークンがあると 1000回/時。
   # https://qiita.com/settings/applications で発行し、環境変数に入れる（read_qiita 権限のみでよい）
   token_env: QIITA_TOKEN
@@ -50,8 +58,11 @@ qiita:
 #  記事の選定ルール（LLMは使わない）
 # ============================================
 selection:
-  # 新しさの半減期（時間）。小さいほど「今朝出た記事」が有利になる
-  recency_half_life_hours: 12
+  # 新しさの半減期（時間）。小さいほど「今朝出た記事」が有利になる。
+  # 目安は「収集期間の 1/4」。qiita.lookback_days=60 に対して 336h（14日）。
+  # 短すぎると古い記事が一切選ばれず収集期間を伸ばした意味がなくなり、
+  # 長すぎると新着より過去のバズ記事ばかりになる。
+  recency_half_life_hours: 336
 
   # 信頼する媒体に加点。URL か媒体名に含まれる文字列でマッチ
   source_weights:
@@ -62,12 +73,10 @@ selection:
     web.dev: 1.4
     github.blog: 1.3
 
-  # この LGTM 数未満の Qiita 記事は投稿候補にしない。RSS 由来の記事には適用されない
-  min_likes: 3
-
   # RSS フィード由来の記事に与える「LGTM 相当」の下駄。
-  # 0 にすると Qiita 記事しか選ばれなくなる。上げすぎると RSS ばかりになる
-  feed_base_score: 8
+  # Qiita 側を LGTM100 以上に絞ると Qiita のスコアが跳ね上がるので、
+  # RSS も拾いたいならこの値を上げる（100 にすると概ね対等になる）
+  feed_base_score: 60
 
   # タイトルがこれより短い記事は捨てる（文字数）
   min_title_length: 8
