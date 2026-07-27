@@ -63,6 +63,19 @@ python src/main.py --check-feeds
 止まっている。取れないフィードがあっても実行時は警読み飛ばすので落ちはしないが、
 候補が薄くなるので直しておくとよい。
 
+`feeds` は URL の文字列でも、カテゴリ絞り込み付きの dict でも書ける:
+
+```yaml
+feeds:
+  - https://example.com/feed          # そのまま全部取る
+  - url: https://gigazine.net/news/rss_2.0/
+    include_categories: [AI, ソフトウェア]   # このカテゴリだけ残す
+    # exclude_categories: [試食, アニメ]     # 逆に除外もできる
+```
+
+GIGAZINE のように1本のフィードに技術・食・アニメが混在する媒体では
+`include_categories` が必須。RSS の `<category>` を見て判定する。
+
 **フィードは多めに入れること。** RSS のみで運用する場合、候補は
 `lookback_hours`（既定30時間）以内に配信された記事だけになる。フィードが2〜3本だと
 候補がゼロになる日が出る。5〜10本を目安に。
