@@ -101,7 +101,7 @@ def show_channels(verbose: bool = False) -> int:
 
 def check_feeds(config: dict) -> int:
     """設定した RSS フィードが実際に取れるか確認する。URL の打ち間違い検出用。"""
-    from collectors import fetch_feed
+    from collectors import fetch_feed, normalize_feed
 
     since = datetime.now(timezone.utc) - timedelta(days=30)
     total, dead = 0, 0
@@ -111,8 +111,13 @@ def check_feeds(config: dict) -> int:
         if not urls:
             print("  フィードが設定されていません")
             continue
-        for url in urls:
-            arts = fetch_feed(url, topic["name"], since)
+        for raw in urls:
+            f = normalize_feed(raw)
+            url = f["url"]
+            arts = fetch_feed(
+                url, topic["name"], since,
+                f.get("include_categories"), f.get("exclude_categories"),
+            )
             total += len(arts)
             if not arts:
                 dead += 1
