@@ -76,7 +76,10 @@ def half_life_for(article: Article, cfg: dict) -> float:
     override = cfg.get("recency_half_life_hours")
     if override:
         return float(override)
-    return max(article.window_hours / 4, 1.0)
+    # 下限は「投稿サイクル1回分」。1日1回しか投稿しないのに半減期が数時間だと、
+    # 前夜のニュースが朝には減衰しきってしまい、RSS が永久に選ばれなくなる
+    floor = float(cfg.get("min_half_life_hours", 24))
+    return max(article.window_hours / 4, floor)
 
 
 def score(article: Article, cfg: dict, now: datetime) -> float:
@@ -143,6 +146,7 @@ def pick(
     count: int,
     cfg: dict,
     include_link: bool,
+    last_kind: str | None = None,
 ) -> list[dict]:
     """スコアリングで投稿する記事を選ぶ。"""
     now = datetime.now(timezone.utc)
@@ -163,6 +167,24 @@ def pick(
 
     pool.sort(key=lambda a: score(a, cfg, now), reverse=True)
     pool = dedupe_similar(pool)
+
+    if cfg.get("show_ranking", True):
+        print("[select] 上位候補:")
+        for a in pool[:8]:
+            metric = f"{a.metric}{a.hot_score}" if a.metric else "-"
+            age_h = int((now - a.published).total_seconds() / 3600)
+            print(f"    {score(a, cfg, now):5.2f}  {a.kind:5} {metric:>7} "
+                  f"{age_h:>4}h  {a.title[:38]}")
+
+    # 収集元の種別をローテーションする。
+    # Zenn（♥100以上・60日窓）と ニュースRSS（30時間窓）はスコアの出方が
+    # 構造的に違うので、単一のスコアで比べると必ず片方に偏る。
+    # 前回と違う種別を優先することで、数値の調整に頼らず確実に混ぜる。
+    if cfg.get("rotate_sources", True) and last_kind:
+        others = [a for a in pool if a.kind != last_kind]
+        if others:
+            pool = others + [a for a in pool if a.kind == last_kind]
+            print(f"[select] 前回は {last_kind} だったので、それ以外を優先します")
 
     # 複数本選ぶときはトピックを散らす
     picked: list[Article] = []
