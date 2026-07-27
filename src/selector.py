@@ -146,7 +146,7 @@ def pick(
     count: int,
     cfg: dict,
     include_link: bool,
-    last_kind: str | None = None,
+    cycle_index: int = 0,
 ) -> list[dict]:
     """スコアリングで投稿する記事を選ぶ。"""
     now = datetime.now(timezone.utc)
@@ -176,15 +176,20 @@ def pick(
             print(f"    {score(a, cfg, now):5.2f}  {a.kind:5} {metric:>7} "
                   f"{age_h:>4}h  {a.title[:38]}")
 
-    # 収集元の種別をローテーションする。
+    # 収集元の枠（source_cycle）を順番に消化する。
     # Zenn（♥100以上・60日窓）と ニュースRSS（30時間窓）はスコアの出方が
     # 構造的に違うので、単一のスコアで比べると必ず片方に偏る。
-    # 前回と違う種別を優先することで、数値の調整に頼らず確実に混ぜる。
-    if cfg.get("rotate_sources", True) and last_kind:
-        others = [a for a in pool if a.kind != last_kind]
-        if others:
-            pool = others + [a for a in pool if a.kind == last_kind]
-            print(f"[select] 前回は {last_kind} だったので、それ以外を優先します")
+    # 数値調整ではなく「今日は feed の枠」と決めてしまうほうが確実。
+    cycle = list(cfg.get("source_cycle") or [])
+    if cycle:
+        want = cycle[cycle_index % len(cycle)]
+        matched = [a for a in pool if a.kind == want]
+        if matched:
+            pool = matched + [a for a in pool if a.kind != want]
+            print(f"[select] 今回の枠: {want}（周期 {cycle_index % len(cycle) + 1}/{len(cycle)}）")
+        else:
+            print(f"[select] 今回の枠は {want} ですが候補がないため、"
+                  f"スコア順で選びます")
 
     # 複数本選ぶときはトピックを散らす
     picked: list[Article] = []
