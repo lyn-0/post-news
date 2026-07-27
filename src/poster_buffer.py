@@ -34,7 +34,14 @@ def _lit(value: str) -> str:
 
 class BufferClient:
     def __init__(self, api_key: str | None = None):
-        self.api_key = api_key or os.environ["BUFFER_API_KEY"]
+        self.api_key = api_key or os.environ.get("BUFFER_API_KEY")
+        if not self.api_key:
+            raise SystemExit(
+                "環境変数 BUFFER_API_KEY が設定されていません。\n"
+                "  PowerShell : $env:BUFFER_API_KEY = 'キー'   ← 必ずシングルクォート\n"
+                "  macOS/Linux: export BUFFER_API_KEY='キー'\n"
+                "  キーの発行 : https://publish.buffer.com/settings/api"
+            )
         self.session = requests.Session()
         self.session.headers.update(
             {
@@ -78,7 +85,7 @@ class BufferClient:
     def channels(self, org_id: str) -> list[dict]:
         data = self.gql(
             f"query {{ channels(input: {{ organizationId: {_lit(org_id)} }}) "
-            f"{{ id name displayName service isQueuePaused }} }}"
+            f"{{ id name displayName service isQueuePaused isDisconnected isLocked }} }}"
         )
         return data["channels"]
 
@@ -129,6 +136,26 @@ mutation {{
         if "message" in result:
             raise RuntimeError(f"Buffer が投稿を拒否しました: {result['message']}")
         return result["post"]
+
+
+    def recent_posts(self, org_id: str, channel_id: str, limit: int = 10) -> list[dict]:
+        """直近の投稿とその配信結果。X 側で失敗していれば error に理由が入る。"""
+        q = f"""
+query {{
+  posts(input: {{
+    organizationId: {_lit(org_id)}
+    filter: {{ channelIds: [{_lit(channel_id)}] }}
+  }}, first: {limit}) {{
+    edges {{ node {{
+      id status shareMode createdAt dueAt sentAt externalLink text
+      error {{ message }}
+    }} }}
+  }}
+}}"""
+        edges = self.gql(q)["posts"]["edges"] or []
+        nodes = [e["node"] for e in edges]
+        nodes.sort(key=lambda n: n.get("createdAt") or "", reverse=True)
+        return nodes
 
 
 def next_occurrence(hhmm: str, now: datetime | None = None) -> datetime:
