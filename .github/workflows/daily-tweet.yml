@@ -7,10 +7,14 @@ on:
     - cron: "0 22 * * *"
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: "Buffer に積まず内容だけ確認する"
-        type: boolean
-        default: true
+      mode:
+        description: "実行モード"
+        type: choice
+        default: dry-run
+        options:
+          - dry-run      # 何も送らず、選ばれた記事だけ表示
+          - post-now     # 予約せず今すぐ投稿する（テスト用）
+          - schedule     # 通常どおり 9:30 に予約する
 
 permissions:
   contents: write   # state/posted.json のコミットに必要
@@ -40,8 +44,15 @@ jobs:
           BUFFER_CHANNEL_ID: ${{ vars.BUFFER_CHANNEL_ID }}
           # 任意。無認証だと Qiita API は 60回/時に制限される
           QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+          MODE: ${{ inputs.mode }}
         run: |
-          python src/main.py ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+          case "${MODE:-schedule}" in
+            dry-run)  FLAGS="--dry-run" ;;
+            post-now) FLAGS="--now" ;;
+            *)        FLAGS="" ;;
+          esac
+          echo "mode=${MODE:-schedule} flags=${FLAGS:-none}"
+          python src/main.py $FLAGS
 
       - name: Commit posted history
         if: success()
