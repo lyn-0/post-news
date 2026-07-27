@@ -99,6 +99,35 @@ def show_channels(verbose: bool = False) -> int:
     return 0
 
 
+def check_feeds(config: dict) -> int:
+    """設定した RSS フィードが実際に取れるか確認する。URL の打ち間違い検出用。"""
+    from collectors import fetch_feed
+
+    since = datetime.now(timezone.utc) - timedelta(days=30)
+    total, dead = 0, 0
+    for topic in config.get("topics", []):
+        print(f"\n[{topic['name']}]")
+        urls = topic.get("feeds") or []
+        if not urls:
+            print("  フィードが設定されていません")
+            continue
+        for url in urls:
+            arts = fetch_feed(url, topic["name"], since)
+            total += len(arts)
+            if not arts:
+                dead += 1
+                print(f"  ✗ {url}\n      過去30日で0件。URLか配信状況を確認してください")
+            else:
+                newest = max(a.published for a in arts)
+                age_h = int((datetime.now(timezone.utc) - newest).total_seconds() / 3600)
+                print(f"  ✓ {len(arts):>3}件 (最新 {age_h}時間前)  {url}")
+
+    print(f"\n合計 {total} 件 / 取得できなかったフィード {dead} 本")
+    if dead:
+        print("取得できないフィードがあっても実行時は警告を出して読み飛ばします")
+    return 0
+
+
 def slot_for(schedule_at: str, index: int) -> str:
     """複数本投稿するとき、30分ずつずらしたスロットを返す。"""
     hh, mm = (int(x) for x in schedule_at.split(":"))
@@ -115,12 +144,17 @@ def main() -> int:
     ap.add_argument("--channels", action="store_true", help="Bufferのチャンネル一覧を表示して終了")
     ap.add_argument("--diagnose", action="store_true",
                     help="チャンネル状態＋直近の投稿の配信結果を表示して終了")
+    ap.add_argument("--check-feeds", action="store_true",
+                    help="設定した RSS フィードが取得できるか確認して終了")
     args = ap.parse_args()
 
     if args.channels or args.diagnose:
         return show_channels(verbose=args.diagnose)
 
     config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
+
+    if args.check_feeds:
+        return check_feeds(config)
     include_link = config.get("include_link", True)
     schedule_at = str(config.get("schedule_at", "09:30"))
     state = load_state()
@@ -136,10 +170,12 @@ def main() -> int:
     print(f"[filter] 未投稿の候補 {len(articles)} 件")
 
     # 3. スコアリングで選定し、投稿文を組み立てる
-    warn_if_mismatched(
-        config.get("selection", {}) or {},
-        float((config.get("qiita", {}) or {}).get("lookback_days", 7)),
+    qcfg = config.get("qiita", {}) or {}
+    window_days = (
+        float(qcfg.get("lookback_days", 7)) if qcfg.get("enabled")
+        else float(config.get("lookback_hours", 30)) / 24
     )
+    warn_if_mismatched(config.get("selection", {}) or {}, window_days)
     picks = pick(
         articles,
         count=config.get("posts_per_run", 1),
