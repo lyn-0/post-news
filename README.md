@@ -4,7 +4,7 @@
 **API キーは Buffer のものだけ**。LLM は使わず、スコアリングで記事を選ぶ。
 
 ```
-RSS + Qiita API ─▶ 既出除外 ─▶ スコアで選定 ─▶ Buffer に予約 ─▶ 9:30 に X へ
+RSS フィード ─▶ 既出除外 ─▶ スコアで選定 ─▶ Buffer に予約 ─▶ 9:30 に X へ
    collectors.py      main.py     selector.py    poster_buffer.py    (Buffer)
 ```
 
@@ -51,17 +51,29 @@ BUFFER_API_KEY=... python src/main.py --channels
 
 ### 3. トピックを書く
 
-`config.yaml` の `topics` を自分の興味に置き換える。
+`config.yaml` の `topics` を自分の興味に置き換える。`feeds` に RSS の URL を並べるだけ。
 
-- `qiita_tags` … Qiita のタグ。正確な表記は https://qiita.com/tags で確認できる
-- `qiita_queries` … Qiita の検索構文をそのまま書ける（`stocks:>=50` など）
-- `feeds` … 信頼できる媒体の RSS
+設定したら、まず疎通を確認する:
 
-Qiita は LGTM 数が取れるので話題性の指標に、RSS は一次情報の網羅に使う、という役割分担。
+```bash
+python src/main.py --check-feeds
+```
 
-Qiita API は**認証なしでも動く**が、IP あたり 60回/時の制限がある。トークンを使うと
-1000回/時になる。必要なら https://qiita.com/settings/applications で発行し
-（`read_qiita` 権限のみでよい）、`QIITA_TOKEN` として渡す。タグ数が少なければ無認証で足りる。
+各フィードの取得件数と最新記事の鮮度が出る。`✗` が付いたものは URL が違うか配信が
+止まっている。取れないフィードがあっても実行時は警読み飛ばすので落ちはしないが、
+候補が薄くなるので直しておくとよい。
+
+**フィードは多めに入れること。** RSS のみで運用する場合、候補は
+`lookback_hours`（既定30時間）以内に配信された記事だけになる。フィードが2〜3本だと
+候補がゼロになる日が出る。5〜10本を目安に。
+
+### Qiita を併用したい場合
+
+`qiita.enabled: true` にすると、Qiita API から LGTM 数付きで記事を集める。
+コードと設定はそのまま残してあるので、切り替えるだけで戻せる。
+
+ただし `qiita.lookback_days` を伸ばす場合は `selection.recency_half_life_hours` も
+必ず一緒に伸ばすこと（目安は収集期間の 1/4）。釣り合っていないと起動時に警告が出る。
 
 ### 4. 試す
 
@@ -154,8 +166,8 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
 |---|---|
 | 古い記事ばかり選ばれる | `recency_half_life_hours` を小さく（例 6） |
 | 話題性より媒体を重視したい | `source_weights` に信頼媒体を追加、値を上げる |
-| 質の低い記事が混じる | `qiita.min_likes` を上げる |
-| 候補がゼロになった | `qiita.min_likes` を下げるか `qiita.lookback_days` を伸ばす |
+| 候補がゼロになる日がある | フィードを増やす、`lookback_hours` を伸ばす |
+| 同じ媒体ばかり選ばれる | `source_weights` の値を下げる／他媒体を上げる |
 | Qiita ばかり選ばれる | `feed_base_score` を上げる（既定 8） |
 | RSS ばかり選ばれる | `feed_base_score` を下げる |
 | 特定の連載やコーナーを弾きたい | `exclude_patterns` に正規表現を追加 |
