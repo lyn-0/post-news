@@ -26,6 +26,7 @@ class Article:
     summary: str = ""
     hot_score: int = 0          # LGTM数など。エンゲージメント指標が無ければ 0
     metric: str = ""            # 指標の名前（"LGTM" など）。空なら指標なし
+    window_hours: float = 30.0  # この記事を集めた収集ウィンドウ。減衰の基準に使う
     extra: dict = field(default_factory=dict)
 
     @property
@@ -111,6 +112,7 @@ def fetch_feed(
                 topic=topic,
                 published=pub,
                 summary=_strip(e.get("summary", "")),
+                window_hours=(datetime.now(timezone.utc) - since).total_seconds() / 3600,
                 extra={"categories": cats},
             )
         )
@@ -186,6 +188,7 @@ def fetch_qiita(
                 summary=_strip(it.get("body", ""))[:400],
                 hot_score=int(it.get("likes_count", 0)),
                 metric="LGTM",
+                window_hours=(datetime.now(timezone.utc) - since).total_seconds() / 3600,
                 extra={
                     "via": "qiita",
                     "query": query,
@@ -193,6 +196,78 @@ def fetch_qiita(
                 },
             )
         )
+    return out
+
+
+def fetch_zenn(
+    topic_name: str,
+    topic: str,
+    since: datetime,
+    min_likes: int = 0,
+    max_pages: int = 3,
+) -> list[Article]:
+    """Zenn のトピック別記事一覧。いいね数（liked_count）が取れる。
+
+    RSS にはいいね数が含まれないため、サイト自身が使っている
+    /api/articles を叩く。これは Zenn が公式にドキュメント化した API ではないので、
+    予告なく変わる可能性がある（壊れたらこの関数だけ直せばよい）。
+    1ページ最大48件。新しい順に返るので、窓の外に出たら打ち切る。
+    """
+    out: list[Article] = []
+    window_h = (datetime.now(timezone.utc) - since).total_seconds() / 3600
+
+    for page in range(1, max_pages + 1):
+        try:
+            res = requests.get(
+                "https://zenn.dev/api/articles",
+                params={"topicname": topic_name, "order": "latest", "page": page},
+                headers={"User-Agent": UA},
+                timeout=20,
+            )
+            res.raise_for_status()
+            data = res.json()
+        except Exception as e:
+            print(f"  [warn] zenn failed: {topic_name} p{page} ({e})")
+            break
+
+        items = data.get("articles") or []
+        if not items:
+            break
+
+        reached_end = False
+        for it in items:
+            try:
+                pub = datetime.fromisoformat(it["published_at"])
+            except (KeyError, ValueError):
+                continue
+            if pub < since:
+                reached_end = True   # 新しい順なので、これ以降は全部窓の外
+                continue
+
+            likes = int(it.get("liked_count", 0))
+            if likes < min_likes:
+                continue
+
+            path = it.get("path") or ""
+            out.append(
+                Article(
+                    title=(it.get("title") or "").strip(),
+                    url=f"https://zenn.dev{path}",
+                    source=f"Zenn/@{(it.get('user') or {}).get('username', '?')}",
+                    topic=topic,
+                    published=pub,
+                    hot_score=likes,
+                    metric="♥",
+                    window_hours=window_h,
+                    extra={"via": "zenn", "zenn_topic": topic_name,
+                           "article_type": it.get("article_type")},
+                )
+            )
+
+        if reached_end or data.get("next_page") is None:
+            break
+        time.sleep(0.3)
+
     return out
 
 
@@ -206,8 +281,15 @@ def collect(config: dict) -> list[Article]:
     # LGTM が積み上がるには時間がかかるので、Qiita は RSS より長い窓で見る
     qiita_since = now - timedelta(days=float(qiita_cfg.get("lookback_days", 7)))
 
+    zenn_cfg = config.get("zenn", {}) or {}
+    zenn_min_likes = int(zenn_cfg.get("min_likes", 0))
+    zenn_since = now - timedelta(days=float(zenn_cfg.get("lookback_days", 60)))
+
     seen: dict[str, Article] = {}
 
+    if zenn_cfg.get("enabled"):
+        print(f"[collect] Zenn: ♥{zenn_min_likes}以上 / "
+              f"過去{zenn_cfg.get('lookback_days', 60)}日")
     if qiita_cfg.get("enabled"):
         cond = f"LGTM{qiita_min_likes}以上 / 過去{qiita_cfg.get('lookback_days', 7)}日"
         auth = "トークンあり" if token else "認証なし(60回/時)"
@@ -224,6 +306,17 @@ def collect(config: dict) -> list[Article]:
                 f.get("include_categories"), f.get("exclude_categories"),
             ):
                 seen.setdefault(art.key, art)
+
+        if zenn_cfg.get("enabled"):
+            for zt in topic.get("zenn_topics") or []:
+                for art in fetch_zenn(
+                    zt, name, zenn_since, zenn_min_likes,
+                    int(zenn_cfg.get("max_pages", 3)),
+                ):
+                    prev = seen.get(art.key)
+                    if prev is None or art.hot_score > prev.hot_score:
+                        seen[art.key] = art
+                time.sleep(0.3)
 
         if qiita_cfg.get("enabled"):
             queries = [f"tag:{t}" for t in topic.get("qiita_tags") or []]
