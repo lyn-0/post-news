@@ -22,12 +22,12 @@ include_link: true
 topics:
   - name: "AI / LLM"
     qiita_tags: ["LLM", "OpenAI", "生成AI"]
+    zenn_topics: ["llm", "生成ai", "openai"]
     feeds:
       # Ledge.ai は公式RSSが無いため、有志が自動生成しているフィードを使う
       # （https://github.com/yoshiori/ledge-ai-feed / 毎時更新）
       - https://yoshiori.github.io/ledge-ai-feed/rss.xml
       - https://www.itmedia.co.jp/aiplus/subtop/features/rss.xml
-      - https://zenn.dev/topics/llm/feed
 
   - name: "テック全般"
     feeds:
@@ -46,15 +46,29 @@ topics:
 
   - name: "フロントエンド / Web開発"
     qiita_tags: ["React", "Next.js", "TypeScript"]
+    zenn_topics: ["react", "nextjs", "typescript", "frontend"]
     feeds:
-      - https://zenn.dev/topics/frontend/feed
       - https://developer.mozilla.org/en-US/blog/rss.xml
       - https://github.blog/feed/
 
   - name: "アクセシビリティ / SEO"
     qiita_tags: ["アクセシビリティ", "SEO"]
-    feeds:
-      - https://zenn.dev/topics/accessibility/feed
+    zenn_topics: ["accessibility", "seo"]
+    feeds: []
+
+# Zenn はいいね数（♥）が RSS に入っていないため、サイト内部の API を使う。
+# トピック名は各トピックの `zenn_topics` に書く（URL の zenn.dev/topics/xxx の xxx）
+zenn:
+  enabled: true
+
+  # このいいね数未満の記事は候補にしない
+  min_likes: 100
+
+  # 収集期間（日）。♥100 まで積み上がるには時間がかかるので短くしすぎない
+  lookback_days: 60
+
+  # 1トピックあたり何ページ取るか（1ページ48件、新しい順）
+  max_pages: 3
 
 # Qiita を使う場合はここを true に。設定はそのまま残してある
 qiita:
@@ -67,16 +81,20 @@ qiita:
 #  記事の選定ルール（LLMは使わない）
 # ============================================
 selection:
-  # 新しさの半減期（時間）。小さいほど「今朝出た記事」が有利になる。
-  # 目安は「収集期間の 1/4」。RSS のみ（lookback_hours: 30）なら 8〜12。
-  # Qiita を再開して lookback_days を伸ばす場合はここも伸ばすこと。
-  recency_half_life_hours: 8
+  # 新しさの半減期（時間）。
+  # 未設定（null）なら収集元ごとに「その収集ウィンドウの1/4」を自動で使う。
+  #   RSS  : 30時間の窓  -> 半減期 7.5時間（数時間で古くなる）
+  #   Zenn : 60日の窓    -> 半減期 15日  （数日前でもまだ新しい）
+  # ニュースRSSと「♥100以上のZenn記事」では時間の流れが違うので、
+  # 共通の固定値にすると必ずどちらかが一方的に負ける。通常は null のままでよい。
+  # 数値を入れると全ソース共通の固定値になる。
+  recency_half_life_hours: null
 
   # 信頼する媒体に加点。URL か媒体名に含まれる文字列でマッチ
   source_weights:
     publickey1.jp: 1.4
     itmedia.co.jp: 1.2
-    zenn.dev: 1.1
+    zenn.dev: 1.0
     ledge.ai: 1.2
     gigazine.net: 1.0
     developer.mozilla.org: 1.4
