@@ -1,7 +1,8 @@
 """興味トピックのホットな記事を集め、Claude に要約させて X に投稿する。
 
   python src/main.py --dry-run    # 投稿せず内容だけ確認（APIキー不要）
-  python src/main.py              # 実行
+  python src/main.py              # 実行（9:30に予約）
+  python src/main.py --now        # 即時投稿（テスト用）
   python src/main.py --channels   # Buffer に繋がっているチャンネル一覧を表示
 """
 
@@ -77,6 +78,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=str(ROOT / "config.yaml"))
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--now", action="store_true",
+                    help="9:30の予約ではなく即時投稿する（テスト実行用）")
     ap.add_argument("--channels", action="store_true", help="Bufferのチャンネル一覧を表示して終了")
     args = ap.parse_args()
 
@@ -118,7 +121,10 @@ def main() -> int:
     # 4. Buffer に予約を積む
     for i, p in enumerate(picks):
         try:
-            poster_buffer.publish(p["tweet"], slot_for(schedule_at, i), dry_run=args.dry_run)
+            poster_buffer.publish(
+                p["tweet"], slot_for(schedule_at, i),
+                dry_run=args.dry_run, now=args.now,
+            )
         except Exception as e:
             print(f"[error] 予約失敗: {e}", file=sys.stderr)
             return 1
