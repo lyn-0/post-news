@@ -103,6 +103,24 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
   対数を使うのは 100 LGTM と 1000 LGTM の差を圧縮するため。減衰の半減期は既定 12 時間。
   RSS フィード由来の記事は LGTM を持たないので `feed_base_score` を代わりに使う
   （0 にすると Qiita 記事しか選ばれなくなる）。
+- **LGTM の下限と収集期間はセット**: `qiita.min_likes` は Qiita API 側で絞る
+  （`likes_count:>=N` をクエリに付ける）。LGTM が積み上がるには数日かかるので、
+  Qiita だけ `qiita.lookback_days`（既定7日）という別の窓を使う。RSS は
+  `lookback_hours`（既定30時間）のまま。
+  **`lookback_days` を変えたら `recency_half_life_hours` も必ず見直すこと。**
+  目安は「収集期間の 1/4」。60日の窓なら 336h（14日）。釣り合っていないと
+  起動時に警告が出る。
+
+  | qiita.lookback_days | recency_half_life_hours |
+  |---|---|
+  | 2日 | 12 |
+  | 7日 | 48 |
+  | 30日 | 168 |
+  | 60日 | 336 |
+
+- **取得件数の上限**: Qiita は1タグにつき1リクエスト・最大100件しか取らない。
+  収集期間を60日にすると人気タグでは100件を超えることがあるが、API は新しい順に
+  返すので「直近100件」が対象になる。減衰が効いている以上、実用上の影響は小さい。
   同じ話題を別媒体が報じている場合はタイトルの類似度で1本に畳む。
   `posts_per_run` が2以上なら、なるべく別トピックから選ぶ。
 - **除外**: PR・広告・まとめ・ランキング系はタイトルの正規表現で落とす。
@@ -136,7 +154,8 @@ cron からの起動は常に `schedule` 相当。まず `dry-run` で選定を�
 |---|---|
 | 古い記事ばかり選ばれる | `recency_half_life_hours` を小さく（例 6） |
 | 話題性より媒体を重視したい | `source_weights` に信頼媒体を追加、値を上げる |
-| 質の低い記事が混じる | `min_likes` を 10〜20 に上げる |
+| 質の低い記事が混じる | `qiita.min_likes` を上げる |
+| 候補がゼロになった | `qiita.min_likes` を下げるか `qiita.lookback_days` を伸ばす |
 | Qiita ばかり選ばれる | `feed_base_score` を上げる（既定 8） |
 | RSS ばかり選ばれる | `feed_base_score` を下げる |
 | 特定の連載やコーナーを弾きたい | `exclude_patterns` に正規表現を追加 |
