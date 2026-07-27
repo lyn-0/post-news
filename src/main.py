@@ -1,6 +1,6 @@
 """興味トピックのホットな記事を集め、Claude に要約させて X に投稿する。
 
-  python src/main.py --dry-run    # 投稿せず内容だけ確認（ANTHROPIC_API_KEY のみ必要）
+  python src/main.py --dry-run    # 投稿せず内容だけ確認（APIキー不要）
   python src/main.py              # 実行
   python src/main.py --channels   # Buffer に繋がっているチャンネル一覧を表示
 """
@@ -19,7 +19,7 @@ import yaml
 import poster_buffer
 from collectors import collect
 from poster import build_tweet, weighted_length
-from summarize import pick_and_write
+from selector import pick
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE_PATH = ROOT / "state" / "posted.json"
@@ -45,11 +45,24 @@ def save_state(state: dict) -> None:
 def show_channels() -> int:
     """接続済みチャンネルの一覧。channelId を確認したいときに使う。"""
     client = poster_buffer.BufferClient()
-    org = client.organization_id()
-    print(f"organization: {org}\n")
-    for c in client.channels(org):
+    orgs = client.organizations()
+    print(f"organization: {len(orgs)} 件")
+    for o in orgs:
+        print(f"  - {o['name']} (id={o['id']})")
+
+    chans = client.all_channels()
+    if not chans:
+        print("\nチャンネルが1件もありません。"
+              "Buffer の Publish 画面で X が接続済みか、"
+              "APIキーを発行したアカウントと同じ組織かを確認してください。")
+        return 1
+
+    print(f"\nchannels: {len(chans)} 件")
+    for c in chans:
+        name = c.get("displayName") or c.get("name") or "(名前なし)"
         paused = " [キュー停止中]" if c.get("isQueuePaused") else ""
-        print(f"  {c['service']:12} {c['displayName']:24} id={c['id']}{paused}")
+        print(f"  {str(c.get('service')):12} {name:24} id={c['id']}{paused}"
+              f"  org={c['organizationName']}")
     return 0
 
 
@@ -85,12 +98,11 @@ def main() -> int:
         return 0
     print(f"[filter] 未投稿の候補 {len(articles)} 件")
 
-    # 3. Claude に選定と本文生成をさせる
-    picks = pick_and_write(
+    # 3. スコアリングで選定し、投稿文を組み立てる
+    picks = pick(
         articles,
         count=config.get("posts_per_run", 1),
-        model=config.get("model", "claude-sonnet-5"),
-        tone=config.get("tone", ""),
+        cfg=config.get("selection", {}) or {},
         include_link=include_link,
     )
     if not picks:

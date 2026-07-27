@@ -56,12 +56,24 @@ class BufferClient:
 
     # ---- チャンネル解決 -------------------------------------------------
 
-    def organization_id(self) -> str:
+    def organizations(self) -> list[dict]:
         data = self.gql("query { account { organizations { id name } } }")
         orgs = data["account"]["organizations"]
         if not orgs:
             raise RuntimeError("Buffer に organization がありません")
-        return orgs[0]["id"]
+        return orgs
+
+    def organization_id(self) -> str:
+        return self.organizations()[0]["id"]
+
+    def all_channels(self) -> list[dict]:
+        """全 organization を横断してチャンネルを集める。
+        組織が複数ある場合、X が先頭以外に紐づいていることがあるため。"""
+        out = []
+        for org in self.organizations():
+            for c in self.channels(org["id"]):
+                out.append({**c, "organizationId": org["id"], "organizationName": org["name"]})
+        return out
 
     def channels(self, org_id: str) -> list[dict]:
         data = self.gql(
@@ -76,10 +88,13 @@ class BufferClient:
         if forced:
             return {"id": forced, "displayName": "(env指定)", "isQueuePaused": False}
 
-        chans = self.channels(self.organization_id())
+        chans = self.all_channels()
         matched = [c for c in chans if (c.get("service") or "").lower() in X_SERVICES]
         if not matched:
-            names = ", ".join(f"{c['displayName']}({c['service']})" for c in chans) or "なし"
+            names = ", ".join(
+                f"{c.get('displayName') or c.get('name') or '?'}({c.get('service')})"
+                for c in chans
+            ) or "なし"
             raise RuntimeError(f"X チャンネルが見つかりません。接続済み: {names}")
         if len(matched) > 1:
             print(f"  [warn] X チャンネルが複数あります。先頭を使用: "
