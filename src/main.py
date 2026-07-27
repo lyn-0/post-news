@@ -20,7 +20,7 @@ import yaml
 import poster_buffer
 from collectors import collect
 from poster import build_tweet, weighted_length
-from selector import pick, warn_if_mismatched
+from selector import pick
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE_PATH = ROOT / "state" / "posted.json"
@@ -175,12 +175,6 @@ def main() -> int:
     print(f"[filter] 未投稿の候補 {len(articles)} 件")
 
     # 3. スコアリングで選定し、投稿文を組み立てる
-    qcfg = config.get("qiita", {}) or {}
-    window_days = (
-        float(qcfg.get("lookback_days", 7)) if qcfg.get("enabled")
-        else float(config.get("lookback_hours", 30)) / 24
-    )
-    warn_if_mismatched(config.get("selection", {}) or {}, window_days)
     picks = pick(
         articles,
         count=config.get("posts_per_run", 1),
