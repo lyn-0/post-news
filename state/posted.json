@@ -1,6 +1,11 @@
 {
- "cycle_index": 1,
+ "cycle_index": 2,
  "posted": {
+  "3c055302b0d3a3ee": {
+   "at": "2026-07-28T22:54:31.551297+00:00",
+   "title": "OpenAIやAnthropicなどの従業員、米政府に「AI開発のペース調整を」と提言",
+   "url": "https://www.itmedia.co.jp/news/article/2607/29/2000000255/"
+  },
   "75752a40a43aee02": {
    "at": "2026-07-27T22:56:05.784208+00:00",
    "title": "NVIDIAやMicrosoftなど30社超、オープンAIの防御ツール共同開発の「Open Secure AI Alliance」設立",
