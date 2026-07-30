@@ -1,6 +1,11 @@
 {
- "cycle_index": 3,
+ "cycle_index": 4,
  "posted": {
+  "05ed0851c498d6b7": {
+   "at": "2026-07-30T22:59:37.237195+00:00",
+   "title": "【速報】Kimi-K3 を Day0 デプロイ。2.8T モデルは NVIDIA B300 x8 の 1 ノードで動くのか",
+   "url": "https://zenn.dev/fixstars/articles/kimi-k3-benchmark"
+  },
   "3ae34c4e5d73f5ae": {
    "at": "2026-07-29T22:56:09.060895+00:00",
    "title": "AI・半導体企業トップが語る“稼ぎ頭”　キオクシア、フジクラ、東京エレデバの見解まとめ【無料PDF】",
