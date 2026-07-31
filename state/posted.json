@@ -1,5 +1,5 @@
 {
- "cycle_index": 4,
+ "cycle_index": 5,
  "posted": {
   "05ed0851c498d6b7": {
    "at": "2026-07-30T22:59:37.237195+00:00",
@@ -20,6 +20,11 @@
    "at": "2026-07-27T22:56:05.784208+00:00",
    "title": "NVIDIAやMicrosoftなど30社超、オープンAIの防御ツール共同開発の「Open Secure AI Alliance」設立",
    "url": "https://www.itmedia.co.jp/news/articles/2607/28/news059.html"
+  },
+  "7ead1fcb72dfc8b4": {
+   "at": "2026-07-31T22:55:09.766945+00:00",
+   "title": "Don’t stop early: Case-folding source code at memory speed",
+   "url": "https://github.blog/engineering/architecture-optimization/dont-stop-early-case-folding-source-code-at-memory-speed/"
   }
  }
 }
