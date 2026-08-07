@@ -1,6 +1,11 @@
 {
- "cycle_index": 11,
+ "cycle_index": 12,
  "posted": {
+  "017f9e9b4df86db3": {
+   "at": "2026-08-07T22:28:41.501850+00:00",
+   "title": "最近の開発の流れ",
+   "url": "https://zenn.dev/kimuchan/articles/bc8e98682f8594"
+  },
   "05ed0851c498d6b7": {
    "at": "2026-07-30T22:59:37.237195+00:00",
    "title": "【速報】Kimi-K3 を Day0 デプロイ。2.8T モデルは NVIDIA B300 x8 の 1 ノードで動くのか",
