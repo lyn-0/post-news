@@ -1,5 +1,5 @@
 {
- "cycle_index": 12,
+ "cycle_index": 13,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -40,6 +40,11 @@
    "at": "2026-07-27T22:56:05.784208+00:00",
    "title": "NVIDIAやMicrosoftなど30社超、オープンAIの防御ツール共同開発の「Open Secure AI Alliance」設立",
    "url": "https://www.itmedia.co.jp/news/articles/2607/28/news059.html"
+  },
+  "78dd450b5bd7f813": {
+   "at": "2026-08-08T22:22:07.729342+00:00",
+   "title": "最大35日間駆動で睡眠時間や血中酸素濃度も測定してくれるアナログ時計風スマートウォッチ「ScanWatch Vitals」を使ってみた",
+   "url": "https://gigazine.net/news/20260808-scanwatch-vitals/"
   },
   "7ead1fcb72dfc8b4": {
    "at": "2026-07-31T22:55:09.766945+00:00",
