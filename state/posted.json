@@ -1,5 +1,5 @@
 {
- "cycle_index": 13,
+ "cycle_index": 14,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -50,6 +50,11 @@
    "at": "2026-07-31T22:55:09.766945+00:00",
    "title": "Don’t stop early: Case-folding source code at memory speed",
    "url": "https://github.blog/engineering/architecture-optimization/dont-stop-early-case-folding-source-code-at-memory-speed/"
+  },
+  "884670e80243bb7c": {
+   "at": "2026-08-09T22:23:37.052871+00:00",
+   "title": "シャープが2026年9月からAIサーバ事業を開始、2026年度業績は円安で下方修正",
+   "url": "https://monoist.itmedia.co.jp/mn/articles/2608/10/news042.html"
   },
   "9b6f0bdd026415b1": {
    "at": "2026-08-07T01:29:32.474456+00:00",
