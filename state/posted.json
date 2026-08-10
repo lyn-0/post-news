@@ -1,5 +1,5 @@
 {
- "cycle_index": 14,
+ "cycle_index": 15,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -25,6 +25,11 @@
    "at": "2026-08-04T22:57:09.854403+00:00",
    "title": "OpenAI、Appleの提訴に全面反論――「営業秘密は持っていないし、欲しくもない」",
    "url": "https://www.itmedia.co.jp/news/article/2608/05/2000000387/"
+  },
+  "56256fe3bcc1ee5d": {
+   "at": "2026-08-10T22:31:00.147775+00:00",
+   "title": "Using the GitHub Copilot SDK for Java",
+   "url": "https://github.blog/engineering/using-the-github-copilot-sdk-for-java/"
   },
   "58c9c84a924b26d1": {
    "at": "2026-08-02T22:50:31.753944+00:00",
