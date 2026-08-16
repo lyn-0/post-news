@@ -1,5 +1,5 @@
 {
- "cycle_index": 20,
+ "cycle_index": 21,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -100,6 +100,11 @@
    "at": "2026-08-03T22:55:59.385870+00:00",
    "title": "Opus5が思考が浅いように感じる問題への対策",
    "url": "https://zenn.dev/u1/articles/claude5-rules-collapse-and-fix"
+  },
+  "d5aeb86f3f5af47f": {
+   "at": "2026-08-16T22:14:55.350094+00:00",
+   "title": "タブもテーマも拡張機能もないAI専用の超軽量ヘッドレスブラウザ「Kitesurf」、Cloudflareが発表",
+   "url": "https://www.publickey1.jp/blog/26/aikitesurfcloudflare.html"
   }
  }
 }
