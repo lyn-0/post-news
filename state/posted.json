@@ -1,5 +1,5 @@
 {
- "cycle_index": 22,
+ "cycle_index": 23,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -105,6 +105,11 @@
    "at": "2026-08-03T22:55:59.385870+00:00",
    "title": "Opus5が思考が浅いように感じる問題への対策",
    "url": "https://zenn.dev/u1/articles/claude5-rules-collapse-and-fix"
+  },
+  "d105689eaf794bf6": {
+   "at": "2026-08-18T22:16:48.899702+00:00",
+   "title": "コードからDockerfile不要でOCIコンテナをビルド。「Cloud Native Buildpacks」が十分成熟したとしてCNCFの卒業プロジェクトに",
+   "url": "https://www.publickey1.jp/blog/26/dockerfileocicloud_native_buildpackscncf.html"
   },
   "d5aeb86f3f5af47f": {
    "at": "2026-08-16T22:14:55.350094+00:00",
