@@ -1,5 +1,5 @@
 {
- "cycle_index": 23,
+ "cycle_index": 24,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -10,6 +10,11 @@
    "at": "2026-07-30T22:59:37.237195+00:00",
    "title": "【速報】Kimi-K3 を Day0 デプロイ。2.8T モデルは NVIDIA B300 x8 の 1 ノードで動くのか",
    "url": "https://zenn.dev/fixstars/articles/kimi-k3-benchmark"
+  },
+  "0a3536fcf6efe3ad": {
+   "at": "2026-08-19T22:18:35.906407+00:00",
+   "title": "続・貧者のアークテクチャ：Next.js + Cloudflare Workers + Turso 本番運用で踏んだ罠ぜんぶ",
+   "url": "https://zenn.dev/nabettu/articles/a964f988e7cc75"
   },
   "0bb7c760ba823275": {
    "at": "2026-08-14T22:16:17.867984+00:00",
