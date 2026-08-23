@@ -1,5 +1,5 @@
 {
- "cycle_index": 27,
+ "cycle_index": 28,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -125,6 +125,11 @@
    "at": "2026-08-03T22:55:59.385870+00:00",
    "title": "Opus5が思考が浅いように感じる問題への対策",
    "url": "https://zenn.dev/u1/articles/claude5-rules-collapse-and-fix"
+  },
+  "c81e5812500cff2d": {
+   "at": "2026-08-23T22:15:43.768210+00:00",
+   "title": "なぜAI時代にGoが最適な言語なのか",
+   "url": "https://zenn.dev/iwatsukayura/articles/google-go-ai"
   },
   "d105689eaf794bf6": {
    "at": "2026-08-18T22:16:48.899702+00:00",
