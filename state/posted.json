@@ -1,5 +1,5 @@
 {
- "cycle_index": 28,
+ "cycle_index": 29,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -75,6 +75,11 @@
    "at": "2026-08-08T22:22:07.729342+00:00",
    "title": "最大35日間駆動で睡眠時間や血中酸素濃度も測定してくれるアナログ時計風スマートウォッチ「ScanWatch Vitals」を使ってみた",
    "url": "https://gigazine.net/news/20260808-scanwatch-vitals/"
+  },
+  "7d07036b604df13d": {
+   "at": "2026-08-24T22:19:23.668395+00:00",
+   "title": "Your alt text passes automated checks. That doesn’t mean it’s any good.",
+   "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/"
   },
   "7ead1fcb72dfc8b4": {
    "at": "2026-07-31T22:55:09.766945+00:00",
