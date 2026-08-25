@@ -1,5 +1,5 @@
 {
- "cycle_index": 29,
+ "cycle_index": 30,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -65,6 +65,11 @@
    "at": "2026-08-01T22:48:42.558132+00:00",
    "title": "OpenAI、アクティブユーザー10億人超に　導入企業は200万社超",
    "url": "https://www.itmedia.co.jp/news/article/2608/02/2000000346/"
+  },
+  "7414ec6882716a03": {
+   "at": "2026-08-25T22:20:02.555234+00:00",
+   "title": "How to evaluate LLMs before production",
+   "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/"
   },
   "75752a40a43aee02": {
    "at": "2026-07-27T22:56:05.784208+00:00",
