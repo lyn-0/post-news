@@ -1,5 +1,5 @@
 {
- "cycle_index": 37,
+ "cycle_index": 38,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -40,6 +40,11 @@
    "at": "2026-08-15T22:14:40.370682+00:00",
    "title": "Claude がテキストに電子透かしを入れ始めたので、LLM ウォーターマーキングの仕組みを調べた",
    "url": "https://zenn.dev/hellorusk/articles/3328866ca9e922"
+  },
+  "271f803af092c07e": {
+   "at": "2026-09-02T23:46:04.056403+00:00",
+   "title": "Decoding the new AI lingo: Loops, harnesses, squads, hill climbing… oh my!",
+   "url": "https://github.blog/ai-and-ml/decoding-the-new-ai-lingo-loops-harnesses-squads-hill-climbing-oh-my/"
   },
   "3ae34c4e5d73f5ae": {
    "at": "2026-07-29T22:56:09.060895+00:00",
