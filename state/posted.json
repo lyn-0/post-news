@@ -1,5 +1,5 @@
 {
- "cycle_index": 39,
+ "cycle_index": 40,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -110,6 +110,11 @@
    "at": "2026-08-09T22:23:37.052871+00:00",
    "title": "シャープが2026年9月からAIサーバ事業を開始、2026年度業績は円安で下方修正",
    "url": "https://monoist.itmedia.co.jp/mn/articles/2608/10/news042.html"
+  },
+  "8d45d0e408419abe": {
+   "at": "2026-09-04T23:37:47.469855+00:00",
+   "title": "Google提唱の「SKILL.state」について。プロンプトに型の概念を導入",
+   "url": "https://zenn.dev/knowledgesense/articles/ad123283bdea26"
   },
   "9781cb4160d1ee93": {
    "at": "2026-08-29T03:27:32.802603+00:00",
