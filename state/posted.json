@@ -1,5 +1,5 @@
 {
- "cycle_index": 40,
+ "cycle_index": 41,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -185,6 +185,11 @@
    "at": "2026-09-01T23:44:12.555154+00:00",
    "title": "Anthropic、企業向け「Enterprise Frontier Safeguards」発表　ログは顧客のクラウドに保存し、人手による確認も顧客側で",
    "url": "https://www.itmedia.co.jp/news/article/2609/02/2000001049/"
+  },
+  "c7b911536d956cfc": {
+   "at": "2026-09-05T23:29:48.114385+00:00",
+   "title": "OpenAI、休眠サイトへの自社AIエージェント書き込みを認め、非公表の理由を説明",
+   "url": "https://www.itmedia.co.jp/news/article/2609/06/2000001202/"
   },
   "c81e5812500cff2d": {
    "at": "2026-08-23T22:15:43.768210+00:00",
