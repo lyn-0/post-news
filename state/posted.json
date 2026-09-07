@@ -1,5 +1,5 @@
 {
- "cycle_index": 42,
+ "cycle_index": 43,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -155,6 +155,11 @@
    "at": "2026-08-20T22:20:46.280499+00:00",
    "title": "Slack、AIとチームで協働する「Slack Code」を発表　ClaudeやDevinを専用チャネルで操作",
    "url": "https://www.itmedia.co.jp/news/article/2608/21/2000000667/"
+  },
+  "ac90e2568238882a": {
+   "at": "2026-09-07T23:53:44.025699+00:00",
+   "title": "巨大オンラインゲーム「EVE Online」。ゲームを支える240万行のPython 2.7のコードをPython 3へ移行すると発表",
+   "url": "https://www.publickey1.jp/blog/26/eve_online240python_27python_3.html"
   },
   "acae2119946b15f1": {
    "at": "2026-08-17T22:18:22.509087+00:00",
