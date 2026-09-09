@@ -1,5 +1,5 @@
 {
- "cycle_index": 44,
+ "cycle_index": 45,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -45,6 +45,11 @@
    "at": "2026-09-02T23:46:04.056403+00:00",
    "title": "Decoding the new AI lingo: Loops, harnesses, squads, hill climbing… oh my!",
    "url": "https://github.blog/ai-and-ml/decoding-the-new-ai-lingo-loops-harnesses-squads-hill-climbing-oh-my/"
+  },
+  "2e0a8b292cd152c9": {
+   "at": "2026-09-09T23:45:42.425607+00:00",
+   "title": "Google、フィンランドに過去最大の約2.3兆円投資　AIデータセンター増設や原発電力調達へ",
+   "url": "https://www.itmedia.co.jp/news/article/2609/10/2000001345/"
   },
   "3ae34c4e5d73f5ae": {
    "at": "2026-07-29T22:56:09.060895+00:00",
