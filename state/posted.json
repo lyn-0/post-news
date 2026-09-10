@@ -1,5 +1,5 @@
 {
- "cycle_index": 45,
+ "cycle_index": 46,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -160,6 +160,11 @@
    "at": "2026-09-03T23:44:57.183706+00:00",
    "title": "OpenAI、「GPT-6 Astra」を一部組織向けに公開　サイバー能力が初の「Critical」に",
    "url": "https://www.itmedia.co.jp/news/article/2609/04/2000001153/"
+  },
+  "aa97fe2ce391c75b": {
+   "at": "2026-09-10T23:37:40.087414+00:00",
+   "title": "GitHub Copilot app for Beginners: Using the diff, terminal, and browser",
+   "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/"
   },
   "ab5fce7ce83683d2": {
    "at": "2026-08-20T22:20:46.280499+00:00",
