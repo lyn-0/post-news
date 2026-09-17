@@ -1,5 +1,5 @@
 {
- "cycle_index": 51,
+ "cycle_index": 52,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -230,6 +230,11 @@
    "at": "2026-08-03T22:55:59.385870+00:00",
    "title": "Opus5が思考が浅いように感じる問題への対策",
    "url": "https://zenn.dev/u1/articles/claude5-rules-collapse-and-fix"
+  },
+  "bd2580705c431e0a": {
+   "at": "2026-09-17T00:01:14.689168+00:00",
+   "title": "LLMのトークン効率化で気をつけたいことまとめ",
+   "url": "https://zenn.dev/ml_bear/articles/e5cc1047cba176"
   },
   "c03690d1c3686ef9": {
    "at": "2026-09-01T23:44:12.555154+00:00",
