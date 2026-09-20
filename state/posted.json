@@ -1,5 +1,5 @@
 {
- "cycle_index": 55,
+ "cycle_index": 56,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -275,6 +275,11 @@
    "at": "2026-09-18T23:48:45.436290+00:00",
    "title": "「サポートの切れるRHELを使い続ける方法」「君のCLAUDE.mdは盛り過ぎ」――“新旧IT”の実践知を探る",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/19/news011.html"
+  },
+  "ff520853dac92c63": {
+   "at": "2026-09-20T23:47:03.921521+00:00",
+   "title": "jev-lint: コード中の命名やコメントが嘘になってないかを高速に確認",
+   "url": "https://zenn.dev/mizchi/articles/jev-lint-intro"
   }
  }
 }
