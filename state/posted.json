@@ -1,5 +1,5 @@
 {
- "cycle_index": 60,
+ "cycle_index": 61,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -111,6 +111,11 @@
    "title": "OpenAI、アクティブユーザー10億人超に　導入企業は200万社超",
    "url": "https://www.itmedia.co.jp/news/article/2608/02/2000000346/"
   },
+  "69ae17eaca5bdc9a": {
+   "at": "2026-09-26T00:19:41.047977+00:00",
+   "title": "ずっと座っている人ほど椅子には“動いて”ほしい　Razerの最新ゲーミングチェア「Iskur V2 NewGen」を試す",
+   "url": "https://www.itmedia.co.jp/news/article/2609/26/2000001759/"
+  },
   "69eb713a997fdf2a": {
    "at": "2026-09-24T00:10:54.261483+00:00",
    "title": "YouTube、視聴者向け新機能を発表　プロンプトで作る「カスタムフィード」、Ask YouTubeの買い物支援、YouTube Musicの「Ask Music」など",
@@ -120,11 +125,6 @@
    "at": "2026-08-25T22:20:02.555234+00:00",
    "title": "How to evaluate LLMs before production",
    "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/"
-  },
-  "75752a40a43aee02": {
-   "at": "2026-07-27T22:56:05.784208+00:00",
-   "title": "NVIDIAやMicrosoftなど30社超、オープンAIの防御ツール共同開発の「Open Secure AI Alliance」設立",
-   "url": "https://www.itmedia.co.jp/news/articles/2607/28/news059.html"
   },
   "78dd450b5bd7f813": {
    "at": "2026-08-08T22:22:07.729342+00:00",
