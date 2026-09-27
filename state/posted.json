@@ -1,5 +1,5 @@
 {
- "cycle_index": 61,
+ "cycle_index": 62,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -65,11 +65,6 @@
    "at": "2026-07-29T22:56:09.060895+00:00",
    "title": "AI・半導体企業トップが語る“稼ぎ頭”　キオクシア、フジクラ、東京エレデバの見解まとめ【無料PDF】",
    "url": "https://www.itmedia.co.jp/business/articles/2607/30/news045.html"
-  },
-  "3c055302b0d3a3ee": {
-   "at": "2026-07-28T22:54:31.551297+00:00",
-   "title": "OpenAIやAnthropicなどの従業員、米政府に「AI開発のペース調整を」と提言",
-   "url": "https://www.itmedia.co.jp/news/article/2607/29/2000000255/"
   },
   "413bf6c9ed9faa9f": {
    "at": "2026-09-15T00:09:00.795401+00:00",
@@ -295,6 +290,11 @@
    "at": "2026-09-22T23:57:23.657748+00:00",
    "title": "なぜ「ITエンジニアの中間管理職」は報われないのか？　昇給率「8％」の壁",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/23/news016.html"
+  },
+  "edb49cd7dbb98146": {
+   "at": "2026-09-27T00:06:37.615182+00:00",
+   "title": "脱VMwareで顕在化した「ITインフラを任せられる人」不足――“AI頼み”で本当に解決できるのか",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/27/news004.html"
   },
   "ff520853dac92c63": {
    "at": "2026-09-20T23:47:03.921521+00:00",
