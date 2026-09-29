@@ -1,15 +1,10 @@
 {
- "cycle_index": 63,
+ "cycle_index": 64,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
    "title": "最近の開発の流れ",
    "url": "https://zenn.dev/kimuchan/articles/bc8e98682f8594"
-  },
-  "05ed0851c498d6b7": {
-   "at": "2026-07-30T22:59:37.237195+00:00",
-   "title": "【速報】Kimi-K3 を Day0 デプロイ。2.8T モデルは NVIDIA B300 x8 の 1 ノードで動くのか",
-   "url": "https://zenn.dev/fixstars/articles/kimi-k3-benchmark"
   },
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
@@ -20,6 +15,11 @@
    "at": "2026-08-14T22:16:17.867984+00:00",
    "title": "How to bring your software delivery workflow into GitHub with agent apps",
    "url": "https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/"
+  },
+  "0f8e936d978b79eb": {
+   "at": "2026-09-29T01:23:51.645786+00:00",
+   "title": "みんなJevの話してる。やってないの俺だけ",
+   "url": "https://zenn.dev/unsoluble_sugar/articles/jev-system-one-model-intro"
   },
   "1165a6412d683173": {
    "at": "2026-08-31T00:08:01.904025+00:00",
