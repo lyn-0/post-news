@@ -1,5 +1,5 @@
 {
- "cycle_index": 66,
+ "cycle_index": 67,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -61,6 +61,11 @@
    "title": "Google、フィンランドに過去最大の約2.3兆円投資　AIデータセンター増設や原発電力調達へ",
    "url": "https://www.itmedia.co.jp/news/article/2609/10/2000001345/"
   },
+  "38c070d1e835460c": {
+   "at": "2026-10-02T01:14:32.688741+00:00",
+   "title": "「Kindle」シリーズ4モデルを刷新　全モデルで画面の段差なくしフラットに　2万9980円から",
+   "url": "https://www.itmedia.co.jp/news/article/2610/02/2000001949/"
+  },
   "413bf6c9ed9faa9f": {
    "at": "2026-09-15T00:09:00.795401+00:00",
    "title": "トランプ大統領、アモデイ氏を名指しで「完璧な小さい天使のふり」　「AIに必要なガードレールは強く賢い大統領だけ」",
@@ -90,11 +95,6 @@
    "at": "2026-08-10T22:31:00.147775+00:00",
    "title": "Using the GitHub Copilot SDK for Java",
    "url": "https://github.blog/engineering/using-the-github-copilot-sdk-for-java/"
-  },
-  "58c9c84a924b26d1": {
-   "at": "2026-08-02T22:50:31.753944+00:00",
-   "title": "“Mythos超え”AIモデルを搭載　Microsoft新セキュリティ基盤の実力とは？",
-   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2608/03/news027.html"
   },
   "66c0f567bfefdedb": {
    "at": "2026-10-01T01:00:16.348719+00:00",
