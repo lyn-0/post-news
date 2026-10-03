@@ -1,5 +1,5 @@
 {
- "cycle_index": 67,
+ "cycle_index": 68,
  "posted": {
   "017f9e9b4df86db3": {
    "at": "2026-08-07T22:28:41.501850+00:00",
@@ -60,6 +60,11 @@
    "at": "2026-09-09T23:45:42.425607+00:00",
    "title": "Google、フィンランドに過去最大の約2.3兆円投資　AIデータセンター増設や原発電力調達へ",
    "url": "https://www.itmedia.co.jp/news/article/2609/10/2000001345/"
+  },
+  "303024c58fc90607": {
+   "at": "2026-10-03T00:52:59.006171+00:00",
+   "title": "AI-Slopな日本語を構造レベルで読みやすくするSkill『yomiyasu（よみやす）』を作りました",
+   "url": "https://zenn.dev/algoartis/articles/0b1c731881b25c"
   },
   "38c070d1e835460c": {
    "at": "2026-10-02T01:14:32.688741+00:00",
@@ -240,11 +245,6 @@
    "at": "2026-09-11T23:47:33.933547+00:00",
    "title": "「人間の敗北」を告げるCTFの終焉と『徳丸本』第3版――激変するセキュリティと基盤運用のリアル",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/12/news004.html"
-  },
-  "bc9edcae201664cd": {
-   "at": "2026-08-03T22:55:59.385870+00:00",
-   "title": "Opus5が思考が浅いように感じる問題への対策",
-   "url": "https://zenn.dev/u1/articles/claude5-rules-collapse-and-fix"
   },
   "bd2580705c431e0a": {
    "at": "2026-09-17T00:01:14.689168+00:00",
