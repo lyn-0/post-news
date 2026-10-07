@@ -1,11 +1,6 @@
 {
- "cycle_index": 71,
+ "cycle_index": 72,
  "posted": {
-  "017f9e9b4df86db3": {
-   "at": "2026-08-07T22:28:41.501850+00:00",
-   "title": "最近の開発の流れ",
-   "url": "https://zenn.dev/kimuchan/articles/bc8e98682f8594"
-  },
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
    "title": "続・貧者のアークテクチャ：Next.js + Cloudflare Workers + Turso 本番運用で踏んだ罠ぜんぶ",
@@ -95,6 +90,11 @@
    "at": "2026-09-25T00:12:50.664205+00:00",
    "title": "TypeSafeのJevを正しく驚く、それってLLMでできませんか？",
    "url": "https://zenn.dev/nwn/articles/824026c76116e0"
+  },
+  "52fe66b7cdfe23c2": {
+   "at": "2026-10-07T01:11:05.796605+00:00",
+   "title": "OpenAI DevDay 2026 発表まとめ",
+   "url": "https://zenn.dev/schroneko/articles/openai-devday-2026"
   },
   "537e9a2207795d86": {
    "at": "2026-08-13T22:34:45.091539+00:00",
