@@ -1,5 +1,5 @@
 {
- "cycle_index": 74,
+ "cycle_index": 75,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
@@ -100,11 +100,6 @@
    "at": "2026-08-13T22:34:45.091539+00:00",
    "title": "“梅干し職人”のためツール自作　老舗漬物店のClaude活用、「チャット+コピペ」で成果を出せたワケ",
    "url": "https://www.itmedia.co.jp/business/articles/2608/14/news053.html"
-  },
-  "56256fe3bcc1ee5d": {
-   "at": "2026-08-10T22:31:00.147775+00:00",
-   "title": "Using the GitHub Copilot SDK for Java",
-   "url": "https://github.blog/engineering/using-the-github-copilot-sdk-for-java/"
   },
   "66c0f567bfefdedb": {
    "at": "2026-10-01T01:00:16.348719+00:00",
@@ -285,6 +280,11 @@
    "at": "2026-09-27T00:06:37.615182+00:00",
    "title": "脱VMwareで顕在化した「ITインフラを任せられる人」不足――“AI頼み”で本当に解決できるのか",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/27/news004.html"
+  },
+  "eec8b62f4fa723c6": {
+   "at": "2026-10-10T01:26:43.555260+00:00",
+   "title": "「コミューン」不正アクセスでLINEヤフー、Sansan、パナソニックでも会員情報漏えいの可能性",
+   "url": "https://www.itmedia.co.jp/news/article/2610/10/2000002190/"
   },
   "efc869056d58a052": {
    "at": "2026-10-09T01:38:21.253691+00:00",
