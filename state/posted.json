@@ -1,5 +1,5 @@
 {
- "cycle_index": 77,
+ "cycle_index": 78,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
@@ -61,6 +61,11 @@
    "title": "トランプ政権のサックス氏、AI「ペース調整」論に苦言　「規制がなければできないふりをやめろ」",
    "url": "https://www.itmedia.co.jp/news/article/2609/14/2000001433/"
   },
+  "2a8cb83dd3bd654e": {
+   "at": "2026-10-13T02:48:27.332465+00:00",
+   "title": "日本旅行系が「1日20～30台」のPCキッティングを省力化　担当者“ほぼ半減”でも回せた方法とは？",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/13/news038.html"
+  },
   "2c0b709c8dd51396": {
    "at": "2026-10-05T00:22:42.576249+00:00",
    "title": "日経社員アカウントからなりすましメール9000件　「Microsoft 365」に不正ログインか",
@@ -105,11 +110,6 @@
    "at": "2026-10-07T01:11:05.796605+00:00",
    "title": "OpenAI DevDay 2026 発表まとめ",
    "url": "https://zenn.dev/schroneko/articles/openai-devday-2026"
-  },
-  "537e9a2207795d86": {
-   "at": "2026-08-13T22:34:45.091539+00:00",
-   "title": "“梅干し職人”のためツール自作　老舗漬物店のClaude活用、「チャット+コピペ」で成果を出せたワケ",
-   "url": "https://www.itmedia.co.jp/business/articles/2608/14/news053.html"
   },
   "66c0f567bfefdedb": {
    "at": "2026-10-01T01:00:16.348719+00:00",
