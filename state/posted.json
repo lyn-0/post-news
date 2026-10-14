@@ -1,15 +1,10 @@
 {
- "cycle_index": 78,
+ "cycle_index": 79,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
    "title": "続・貧者のアークテクチャ：Next.js + Cloudflare Workers + Turso 本番運用で踏んだ罠ぜんぶ",
    "url": "https://zenn.dev/nabettu/articles/a964f988e7cc75"
-  },
-  "0bb7c760ba823275": {
-   "at": "2026-08-14T22:16:17.867984+00:00",
-   "title": "How to bring your software delivery workflow into GitHub with agent apps",
-   "url": "https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/"
   },
   "0f8e936d978b79eb": {
    "at": "2026-09-29T01:23:51.645786+00:00",
@@ -175,6 +170,11 @@
    "at": "2026-08-29T23:49:33.848741+00:00",
    "title": "OpenAI、Cursorへのモデル提供を11月12日に終了　SpaceXによる買収が理由",
    "url": "https://www.itmedia.co.jp/news/article/2608/30/2000000945/"
+  },
+  "9c17d3cb2d4fda0b": {
+   "at": "2026-10-14T00:48:53.257192+00:00",
+   "title": "「Google Play」、AI Studioで作った自作アプリを自分の端末で実行可能に　AIでゲームを探す機能も",
+   "url": "https://www.itmedia.co.jp/news/article/2610/14/2000002240/"
   },
   "a43aa7df79b7d355": {
    "at": "2026-10-08T01:29:42.061447+00:00",
