@@ -1,10 +1,15 @@
 {
- "cycle_index": 79,
+ "cycle_index": 80,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
    "title": "続・貧者のアークテクチャ：Next.js + Cloudflare Workers + Turso 本番運用で踏んだ罠ぜんぶ",
    "url": "https://zenn.dev/nabettu/articles/a964f988e7cc75"
+  },
+  "0c5fee1bbf7cb6b2": {
+   "at": "2026-10-15T00:14:48.668683+00:00",
+   "title": "本当に「判断」していますか？",
+   "url": "https://zenn.dev/dyoshikawa/articles/do-you-desicion"
   },
   "0f8e936d978b79eb": {
    "at": "2026-09-29T01:23:51.645786+00:00",
@@ -35,11 +40,6 @@
    "at": "2026-09-17T23:51:02.360575+00:00",
    "title": "RustとC++の共存をどう実現？　Microsoftが明かす統合戦略",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/18/news043.html"
-  },
-  "208022bd8a6f7341": {
-   "at": "2026-08-15T22:14:40.370682+00:00",
-   "title": "Claude がテキストに電子透かしを入れ始めたので、LLM ウォーターマーキングの仕組みを調べた",
-   "url": "https://zenn.dev/hellorusk/articles/3328866ca9e922"
   },
   "22f588aafc5982f2": {
    "at": "2026-10-12T00:54:52.468747+00:00",
