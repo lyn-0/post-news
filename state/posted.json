@@ -1,5 +1,5 @@
 {
- "cycle_index": 80,
+ "cycle_index": 81,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
@@ -131,6 +131,11 @@
    "title": "Your alt text passes automated checks. That doesn’t mean it’s any good.",
    "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/"
   },
+  "804e286aab819293": {
+   "at": "2026-10-16T00:01:20.232548+00:00",
+   "title": "日本企業の7割は脆弱性管理が不十分？　相次ぐ不正アクセスにガートナーが緊急提言",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/16/news019.html"
+  },
   "83dcea23c4b01996": {
    "at": "2026-09-06T23:24:44.671331+00:00",
    "title": "社内の「Excel好き」に向き合う情シスの言い分はこんな感じ、「エクセル至上主義…つらい…」",
@@ -260,11 +265,6 @@
    "at": "2026-08-18T22:16:48.899702+00:00",
    "title": "コードからDockerfile不要でOCIコンテナをビルド。「Cloud Native Buildpacks」が十分成熟したとしてCNCFの卒業プロジェクトに",
    "url": "https://www.publickey1.jp/blog/26/dockerfileocicloud_native_buildpackscncf.html"
-  },
-  "d5aeb86f3f5af47f": {
-   "at": "2026-08-16T22:14:55.350094+00:00",
-   "title": "タブもテーマも拡張機能もないAI専用の超軽量ヘッドレスブラウザ「Kitesurf」、Cloudflareが発表",
-   "url": "https://www.publickey1.jp/blog/26/aikitesurfcloudflare.html"
   },
   "dbd5fc0129b7ce35": {
    "at": "2026-09-18T23:48:45.436290+00:00",
