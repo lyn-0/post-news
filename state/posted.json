@@ -1,5 +1,5 @@
 {
- "cycle_index": 81,
+ "cycle_index": 82,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
@@ -186,6 +186,11 @@
    "title": "漏えい相次ぐ中、保護委が対策を緊急例示　強い多要素認証やEDR導入、不要な個人データの消去など",
    "url": "https://www.itmedia.co.jp/news/article/2610/08/2000002115/"
   },
+  "a496a8a1909fb077": {
+   "at": "2026-10-17T00:06:29.023870+00:00",
+   "title": "「NECが全社員にClaude Cowork導入」「AIで人月モデルは崩壊」――AI活用の“壁”を突破する実践知",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/17/news008.html"
+  },
   "a645aaad2ca01557": {
    "at": "2026-08-27T02:47:23.619808+00:00",
    "title": "「マイナアプリ」一部端末でログインできない不具合　リリースから2日",
@@ -215,11 +220,6 @@
    "at": "2026-09-07T23:53:44.025699+00:00",
    "title": "巨大オンラインゲーム「EVE Online」。ゲームを支える240万行のPython 2.7のコードをPython 3へ移行すると発表",
    "url": "https://www.publickey1.jp/blog/26/eve_online240python_27python_3.html"
-  },
-  "acae2119946b15f1": {
-   "at": "2026-08-17T22:18:22.509087+00:00",
-   "title": "NVIDIA、OpenAIのオハイオAIデータセンターに最大1050億ドルの債務保証──SB Energyと提携",
-   "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000572/"
   },
   "ae8f3253c2dd08ad": {
    "at": "2026-09-01T00:56:50.859512+00:00",
