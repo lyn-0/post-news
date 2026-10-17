@@ -1,5 +1,5 @@
 {
- "cycle_index": 82,
+ "cycle_index": 83,
  "posted": {
   "0a3536fcf6efe3ad": {
    "at": "2026-08-19T22:18:35.906407+00:00",
@@ -125,6 +125,11 @@
    "at": "2026-08-25T22:20:02.555234+00:00",
    "title": "How to evaluate LLMs before production",
    "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/"
+  },
+  "74ab5d9d76044eb5": {
+   "at": "2026-10-17T23:42:41.512892+00:00",
+   "title": "メインフレーム脱却、なぜ「2027年が締め切り」に？　ベンダー撤退より先に来る“人の期限”",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/18/news003.html"
   },
   "7d07036b604df13d": {
    "at": "2026-08-24T22:19:23.668395+00:00",
@@ -260,11 +265,6 @@
    "at": "2026-08-23T22:15:43.768210+00:00",
    "title": "なぜAI時代にGoが最適な言語なのか",
    "url": "https://zenn.dev/iwatsukayura/articles/google-go-ai"
-  },
-  "d105689eaf794bf6": {
-   "at": "2026-08-18T22:16:48.899702+00:00",
-   "title": "コードからDockerfile不要でOCIコンテナをビルド。「Cloud Native Buildpacks」が十分成熟したとしてCNCFの卒業プロジェクトに",
-   "url": "https://www.publickey1.jp/blog/26/dockerfileocicloud_native_buildpackscncf.html"
   },
   "dbd5fc0129b7ce35": {
    "at": "2026-09-18T23:48:45.436290+00:00",
