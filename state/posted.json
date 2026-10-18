@@ -1,11 +1,6 @@
 {
- "cycle_index": 83,
+ "cycle_index": 84,
  "posted": {
-  "0a3536fcf6efe3ad": {
-   "at": "2026-08-19T22:18:35.906407+00:00",
-   "title": "続・貧者のアークテクチャ：Next.js + Cloudflare Workers + Turso 本番運用で踏んだ罠ぜんぶ",
-   "url": "https://zenn.dev/nabettu/articles/a964f988e7cc75"
-  },
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
    "title": "本当に「判断」していますか？",
@@ -265,6 +260,11 @@
    "at": "2026-08-23T22:15:43.768210+00:00",
    "title": "なぜAI時代にGoが最適な言語なのか",
    "url": "https://zenn.dev/iwatsukayura/articles/google-go-ai"
+  },
+  "d3dc8af296e8c18b": {
+   "at": "2026-10-18T23:51:27.083417+00:00",
+   "title": "Cloudflare の CLI を wrangler から cf に移行する",
+   "url": "https://zenn.dev/sora_kumo/articles/cloudflare-to-cf"
   },
   "dbd5fc0129b7ce35": {
    "at": "2026-09-18T23:48:45.436290+00:00",
