@@ -1,5 +1,5 @@
 {
- "cycle_index": 84,
+ "cycle_index": 85,
  "posted": {
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
@@ -90,6 +90,11 @@
    "at": "2026-09-25T00:12:50.664205+00:00",
    "title": "TypeSafeのJevを正しく驚く、それってLLMでできませんか？",
    "url": "https://zenn.dev/nwn/articles/824026c76116e0"
+  },
+  "50dca5b6dff4ce06": {
+   "at": "2026-10-20T00:52:46.157789+00:00",
+   "title": "「My SoftBank」サイト停止中　不正アクセスの試み検知　「My Y!mobile」も",
+   "url": "https://www.itmedia.co.jp/news/article/2610/20/2000002410/"
   },
   "51a2592f5f6249e0": {
    "at": "2026-10-11T00:37:57.789013+00:00",
@@ -210,11 +215,6 @@
    "at": "2026-09-10T23:37:40.087414+00:00",
    "title": "GitHub Copilot app for Beginners: Using the diff, terminal, and browser",
    "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/"
-  },
-  "ab5fce7ce83683d2": {
-   "at": "2026-08-20T22:20:46.280499+00:00",
-   "title": "Slack、AIとチームで協働する「Slack Code」を発表　ClaudeやDevinを専用チャネルで操作",
-   "url": "https://www.itmedia.co.jp/news/article/2608/21/2000000667/"
   },
   "ac90e2568238882a": {
    "at": "2026-09-07T23:53:44.025699+00:00",
