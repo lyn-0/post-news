@@ -1,5 +1,5 @@
 {
- "cycle_index": 86,
+ "cycle_index": 87,
  "posted": {
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
@@ -25,11 +25,6 @@
    "at": "2026-08-28T05:54:41.537533+00:00",
    "title": "AIは回せば回すほど凄いのか ―「常時稼働」という設計の敗北",
    "url": "https://zenn.dev/eggletric/articles/4ea81df765fb66"
-  },
-  "1e4a43395d77d2dc": {
-   "at": "2026-08-22T22:15:27.253822+00:00",
-   "title": "残業するくらいなら「年収100万円ダウン」でいい　“稼げるだけ”では入社しない今どきの人々",
-   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2608/22/news014.html"
   },
   "1ec74f1b7523cf95": {
    "at": "2026-09-17T23:51:02.360575+00:00",
@@ -270,6 +265,11 @@
    "at": "2026-09-18T23:48:45.436290+00:00",
    "title": "「サポートの切れるRHELを使い続ける方法」「君のCLAUDE.mdは盛り過ぎ」――“新旧IT”の実践知を探る",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/19/news011.html"
+  },
+  "deb2dc2b0452d6fa": {
+   "at": "2026-10-22T00:21:59.348260+00:00",
+   "title": "Google Cloudに「Astra」含むOpenAIのモデルが追加　「主要3社のクローズドモデル使える唯一のハイパースケーラー」に",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2610/22/2000002487/"
   },
   "e452dd39f6d7e5fe": {
    "at": "2026-09-22T23:57:23.657748+00:00",
