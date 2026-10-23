@@ -1,5 +1,5 @@
 {
- "cycle_index": 87,
+ "cycle_index": 88,
  "posted": {
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
@@ -251,11 +251,6 @@
    "title": "OpenAI、休眠サイトへの自社AIエージェント書き込みを認め、非公表の理由を説明",
    "url": "https://www.itmedia.co.jp/news/article/2609/06/2000001202/"
   },
-  "c81e5812500cff2d": {
-   "at": "2026-08-23T22:15:43.768210+00:00",
-   "title": "なぜAI時代にGoが最適な言語なのか",
-   "url": "https://zenn.dev/iwatsukayura/articles/google-go-ai"
-  },
   "d3dc8af296e8c18b": {
    "at": "2026-10-18T23:51:27.083417+00:00",
    "title": "Cloudflare の CLI を wrangler から cf に移行する",
@@ -295,6 +290,11 @@
    "at": "2026-09-30T00:57:56.057562+00:00",
    "title": "免許証画像など約160万件漏えい　タイムズカー、対象者に連絡開始",
    "url": "https://www.itmedia.co.jp/news/article/2609/30/2000001872/"
+  },
+  "ff12bd2b5ee742d0": {
+   "at": "2026-10-23T00:21:05.228087+00:00",
+   "title": "改めて考える、AIエンジニアリングの今",
+   "url": "https://zenn.dev/r_kaga/articles/2fd185c50cea7c"
   },
   "ff520853dac92c63": {
    "at": "2026-09-20T23:47:03.921521+00:00",
