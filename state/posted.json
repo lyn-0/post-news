@@ -1,5 +1,5 @@
 {
- "cycle_index": 89,
+ "cycle_index": 90,
  "posted": {
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
@@ -71,6 +71,11 @@
    "title": "「Kindle」シリーズ4モデルを刷新　全モデルで画面の段差なくしフラットに　2万9980円から",
    "url": "https://www.itmedia.co.jp/news/article/2610/02/2000001949/"
   },
+  "3c62dd98d03f8017": {
+   "at": "2026-10-24T23:55:51.427839+00:00",
+   "title": "“コピー”をやめて工数削減――「データのサイロ化」を解消した2社の選択と、消えない“Excelの呪縛”",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/25/news001.html"
+  },
   "413bf6c9ed9faa9f": {
    "at": "2026-09-15T00:09:00.795401+00:00",
    "title": "トランプ大統領、アモデイ氏を名指しで「完璧な小さい天使のふり」　「AIに必要なガードレールは強く賢い大統領だけ」",
@@ -125,11 +130,6 @@
    "at": "2026-09-24T00:10:54.261483+00:00",
    "title": "YouTube、視聴者向け新機能を発表　プロンプトで作る「カスタムフィード」、Ask YouTubeの買い物支援、YouTube Musicの「Ask Music」など",
    "url": "https://www.itmedia.co.jp/news/article/2609/24/2000001684/"
-  },
-  "7414ec6882716a03": {
-   "at": "2026-08-25T22:20:02.555234+00:00",
-   "title": "How to evaluate LLMs before production",
-   "url": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/"
   },
   "74ab5d9d76044eb5": {
    "at": "2026-10-17T23:42:41.512892+00:00",
