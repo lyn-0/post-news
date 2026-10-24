@@ -1,5 +1,5 @@
 {
- "cycle_index": 88,
+ "cycle_index": 89,
  "posted": {
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
@@ -81,6 +81,11 @@
    "title": "最近育てているフロントエンド開発用テンプレートの話",
    "url": "https://zenn.dev/newt_st21/articles/next-template-2026"
   },
+  "47ddfab230c7f128": {
+   "at": "2026-10-24T00:11:14.971780+00:00",
+   "title": "Chromeで「HTTPサイトにつなぐと警告」が標準に――Googleが設定変更",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/24/news004.html"
+  },
   "4873638b77a85cde": {
    "at": "2026-09-25T00:12:50.664205+00:00",
    "title": "TypeSafeのJevを正しく驚く、それってLLMでできませんか？",
@@ -130,11 +135,6 @@
    "at": "2026-10-17T23:42:41.512892+00:00",
    "title": "メインフレーム脱却、なぜ「2027年が締め切り」に？　ベンダー撤退より先に来る“人の期限”",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/18/news003.html"
-  },
-  "7d07036b604df13d": {
-   "at": "2026-08-24T22:19:23.668395+00:00",
-   "title": "Your alt text passes automated checks. That doesn’t mean it’s any good.",
-   "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good/"
   },
   "804e286aab819293": {
    "at": "2026-10-16T00:01:20.232548+00:00",
