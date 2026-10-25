@@ -1,6 +1,11 @@
 {
- "cycle_index": 90,
+ "cycle_index": 91,
  "posted": {
+  "04bb8f151831266a": {
+   "at": "2026-10-25T23:43:20.983705+00:00",
+   "title": "Pythonを起動するだけで認証情報が盗まれる　LiteLLMに混入した悪性コードの正体",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/26/news025.html"
+  },
   "0c5fee1bbf7cb6b2": {
    "at": "2026-10-15T00:14:48.668683+00:00",
    "title": "本当に「判断」していますか？",
