@@ -1,5 +1,5 @@
 {
- "cycle_index": 95,
+ "cycle_index": 96,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -136,6 +136,11 @@
    "title": "メインフレーム脱却、なぜ「2027年が締め切り」に？　ベンダー撤退より先に来る“人の期限”",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/18/news003.html"
   },
+  "7a39002a3d3f72de": {
+   "at": "2026-10-31T01:20:34.453578+00:00",
+   "title": "最近の E2E 戦略（2026 年 10 月現在）",
+   "url": "https://zenn.dev/polyco/articles/26624b38c951b5"
+  },
   "804e286aab819293": {
    "at": "2026-10-16T00:01:20.232548+00:00",
    "title": "日本企業の7割は脆弱性管理が不十分？　相次ぐ不正アクセスにガートナーが緊急提言",
@@ -200,11 +205,6 @@
    "at": "2026-09-07T23:53:44.025699+00:00",
    "title": "巨大オンラインゲーム「EVE Online」。ゲームを支える240万行のPython 2.7のコードをPython 3へ移行すると発表",
    "url": "https://www.publickey1.jp/blog/26/eve_online240python_27python_3.html"
-  },
-  "ae8f3253c2dd08ad": {
-   "at": "2026-09-01T00:56:50.859512+00:00",
-   "title": "TypeScript ライブラリとして動作する組版エンジン minitype を公開しました",
-   "url": "https://zenn.dev/inaniwaudon/articles/62f1def4bad627"
   },
   "b4ca6350328c77d4": {
    "at": "2026-09-19T23:50:41.371814+00:00",
