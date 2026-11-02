@@ -1,5 +1,5 @@
 {
- "cycle_index": 97,
+ "cycle_index": 98,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -35,11 +35,6 @@
    "at": "2026-10-12T00:54:52.468747+00:00",
    "title": "AnthropicのAI、未解決殺人事件で警察に虚偽の情報提供　米政権は「通知と是正は義務」と警告",
    "url": "https://www.itmedia.co.jp/news/article/2610/12/2000002192/"
-  },
-  "271f803af092c07e": {
-   "at": "2026-09-02T23:46:04.056403+00:00",
-   "title": "Decoding the new AI lingo: Loops, harnesses, squads, hill climbing… oh my!",
-   "url": "https://github.blog/ai-and-ml/decoding-the-new-ai-lingo-loops-harnesses-squads-hill-climbing-oh-my/"
   },
   "2973beed11e105e4": {
    "at": "2026-09-13T23:50:55.998995+00:00",
@@ -110,6 +105,11 @@
    "at": "2026-10-07T01:11:05.796605+00:00",
    "title": "OpenAI DevDay 2026 発表まとめ",
    "url": "https://zenn.dev/schroneko/articles/openai-devday-2026"
+  },
+  "5550af9d96a9d675": {
+   "at": "2026-11-02T01:11:09.183100+00:00",
+   "title": "GitHub、「Copilot Fusion」正式リリース。タスクに応じて最適なAIモデル選択で高性能かつ低コストに。GitHub Universe 2026",
+   "url": "https://www.publickey1.jp/blog/26/githubcopilot_fusionaigithub_universe_2026.html"
   },
   "6604211ea1fcad53": {
    "at": "2026-10-21T00:19:32.937628+00:00",
