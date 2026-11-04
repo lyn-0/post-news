@@ -1,5 +1,5 @@
 {
- "cycle_index": 99,
+ "cycle_index": 100,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -166,11 +166,6 @@
    "title": "「ページのトップへ戻るボタン」はなぜ非推奨か",
    "url": "https://zenn.dev/masahiko888/articles/91c9a1e354aacb"
   },
-  "8d45d0e408419abe": {
-   "at": "2026-09-04T23:37:47.469855+00:00",
-   "title": "Google提唱の「SKILL.state」について。プロンプトに型の概念を導入",
-   "url": "https://zenn.dev/knowledgesense/articles/ad123283bdea26"
-  },
   "90db3eef41ac5509": {
    "at": "2026-09-28T00:14:25.373878+00:00",
    "title": "東京メトロ、不正アクセスで会員メアド約5万9000件漏えいのおそれ　海外からか",
@@ -280,6 +275,11 @@
    "at": "2026-10-09T01:38:21.253691+00:00",
    "title": "Amazon、「Fire」に代わる新タブレット「Amazon Alexa Tablet」発表　「Amazonキッズタブレット」は日本でも発売へ",
    "url": "https://www.itmedia.co.jp/news/article/2610/09/2000002155/"
+  },
+  "f63dd7a7506c8901": {
+   "at": "2026-11-04T01:48:55.601097+00:00",
+   "title": "PR： 【Q&Aで解説】Windows Server 2016のEOSに「Azure Arc」で備えるアプローチとは？",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/04/news006.html"
   },
   "fbe1178c4a1d4f11": {
    "at": "2026-09-30T00:57:56.057562+00:00",
