@@ -1,5 +1,5 @@
 {
- "cycle_index": 101,
+ "cycle_index": 102,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -151,11 +151,6 @@
    "title": "日本企業の7割は脆弱性管理が不十分？　相次ぐ不正アクセスにガートナーが緊急提言",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/16/news019.html"
   },
-  "83dcea23c4b01996": {
-   "at": "2026-09-06T23:24:44.671331+00:00",
-   "title": "社内の「Excel好き」に向き合う情シスの言い分はこんな感じ、「エクセル至上主義…つらい…」",
-   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/07/news045.html"
-  },
   "843fd2c38025fd79": {
    "at": "2026-09-22T00:29:32.833766+00:00",
    "title": "SpaceXAI、「Grok 4.7」発表　コーディングと知識労働向けで同社最高性能、価格は据え置き",
@@ -200,6 +195,11 @@
    "at": "2026-09-07T23:53:44.025699+00:00",
    "title": "巨大オンラインゲーム「EVE Online」。ゲームを支える240万行のPython 2.7のコードをPython 3へ移行すると発表",
    "url": "https://www.publickey1.jp/blog/26/eve_online240python_27python_3.html"
+  },
+  "afcfc3fd8d536ba1": {
+   "at": "2026-11-06T01:57:49.984492+00:00",
+   "title": "Google、ワイオミング州のデータセンターなどに170億ドル投資へ　電力費全額負担を約束",
+   "url": "https://www.itmedia.co.jp/news/article/2611/06/2000002936/"
   },
   "b4ca6350328c77d4": {
    "at": "2026-09-19T23:50:41.371814+00:00",
