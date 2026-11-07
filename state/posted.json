@@ -1,5 +1,5 @@
 {
- "cycle_index": 102,
+ "cycle_index": 103,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -116,6 +116,11 @@
    "title": "GitHub、「Copilot Fusion」正式リリース。タスクに応じて最適なAIモデル選択で高性能かつ低コストに。GitHub Universe 2026",
    "url": "https://www.publickey1.jp/blog/26/githubcopilot_fusionaigithub_universe_2026.html"
   },
+  "5ab88d15c948b2ba": {
+   "at": "2026-11-07T01:30:38.089920+00:00",
+   "title": "Beyond code generation: A developer’s guide to agentic engineering",
+   "url": "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/"
+  },
   "6604211ea1fcad53": {
    "at": "2026-10-21T00:19:32.937628+00:00",
    "title": "マネックス証券、委託先に第三者がアクセス試行の形跡　口座の新規開設を一時停止",
@@ -190,11 +195,6 @@
    "at": "2026-09-10T23:37:40.087414+00:00",
    "title": "GitHub Copilot app for Beginners: Using the diff, terminal, and browser",
    "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/"
-  },
-  "ac90e2568238882a": {
-   "at": "2026-09-07T23:53:44.025699+00:00",
-   "title": "巨大オンラインゲーム「EVE Online」。ゲームを支える240万行のPython 2.7のコードをPython 3へ移行すると発表",
-   "url": "https://www.publickey1.jp/blog/26/eve_online240python_27python_3.html"
   },
   "afcfc3fd8d536ba1": {
    "at": "2026-11-06T01:57:49.984492+00:00",
