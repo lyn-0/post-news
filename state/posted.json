@@ -1,5 +1,5 @@
 {
- "cycle_index": 103,
+ "cycle_index": 104,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -161,11 +161,6 @@
    "title": "SpaceXAI、「Grok 4.7」発表　コーディングと知識労働向けで同社最高性能、価格は据え置き",
    "url": "https://www.itmedia.co.jp/news/article/2609/22/2000001668/"
   },
-  "87565575178ffea3": {
-   "at": "2026-09-08T23:48:06.513709+00:00",
-   "title": "「ページのトップへ戻るボタン」はなぜ非推奨か",
-   "url": "https://zenn.dev/masahiko888/articles/91c9a1e354aacb"
-  },
   "90db3eef41ac5509": {
    "at": "2026-09-28T00:14:25.373878+00:00",
    "title": "東京メトロ、不正アクセスで会員メアド約5万9000件漏えいのおそれ　海外からか",
@@ -185,6 +180,11 @@
    "at": "2026-10-17T00:06:29.023870+00:00",
    "title": "「NECが全社員にClaude Cowork導入」「AIで人月モデルは崩壊」――AI活用の“壁”を突破する実践知",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/17/news008.html"
+  },
+  "a81f960ca3c8f813": {
+   "at": "2026-11-08T01:00:31.069416+00:00",
+   "title": "【図解あり】マルチエージェント設計「15のパターン」　GitHub、Google、Siemensの知見を一気に整理",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/08/news001.html"
   },
   "a945a513b10da222": {
    "at": "2026-09-15T23:53:57.193746+00:00",
