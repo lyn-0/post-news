@@ -1,5 +1,5 @@
 {
- "cycle_index": 104,
+ "cycle_index": 105,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -55,11 +55,6 @@
    "at": "2026-11-03T03:14:59.300717+00:00",
    "title": "Apple、第4四半期として過去最高の増収増益　ターナスCEO初の決算「Siri AIはずっと望んでいたSiri」",
    "url": "https://www.itmedia.co.jp/news/article/2611/03/2000002840/"
-  },
-  "2e0a8b292cd152c9": {
-   "at": "2026-09-09T23:45:42.425607+00:00",
-   "title": "Google、フィンランドに過去最大の約2.3兆円投資　AIデータセンター増設や原発電力調達へ",
-   "url": "https://www.itmedia.co.jp/news/article/2609/10/2000001345/"
   },
   "303024c58fc90607": {
    "at": "2026-10-03T00:52:59.006171+00:00",
@@ -230,6 +225,11 @@
    "at": "2026-10-18T23:51:27.083417+00:00",
    "title": "Cloudflare の CLI を wrangler から cf に移行する",
    "url": "https://zenn.dev/sora_kumo/articles/cloudflare-to-cf"
+  },
+  "dba6e2f05bc2d47e": {
+   "at": "2026-11-09T01:21:23.221232+00:00",
+   "title": "128信金の大規模障害、約6時間で復旧　「原因はサイバー攻撃ではない」",
+   "url": "https://www.itmedia.co.jp/news/article/2611/09/2000002999/"
   },
   "dbd5fc0129b7ce35": {
    "at": "2026-09-18T23:48:45.436290+00:00",
