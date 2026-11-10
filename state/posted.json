@@ -1,5 +1,5 @@
 {
- "cycle_index": 105,
+ "cycle_index": 106,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -60,6 +60,11 @@
    "at": "2026-10-03T00:52:59.006171+00:00",
    "title": "AI-Slopな日本語を構造レベルで読みやすくするSkill『yomiyasu（よみやす）』を作りました",
    "url": "https://zenn.dev/algoartis/articles/0b1c731881b25c"
+  },
+  "32b75834a1b53cc2": {
+   "at": "2026-11-10T03:56:29.476889+00:00",
+   "title": "Instagram、年齢を偽った10代もAIで検出　日本でも保護機能の適用を開始",
+   "url": "https://www.itmedia.co.jp/news/article/2611/10/2000003056/"
   },
   "38c070d1e835460c": {
    "at": "2026-10-02T01:14:32.688741+00:00",
@@ -185,11 +190,6 @@
    "at": "2026-09-15T23:53:57.193746+00:00",
    "title": "人が「承認」した無害なコマンドでAIが乗っ取られる　コードエディタCursorを襲った“2行の攻撃”",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/16/news033.html"
-  },
-  "aa97fe2ce391c75b": {
-   "at": "2026-09-10T23:37:40.087414+00:00",
-   "title": "GitHub Copilot app for Beginners: Using the diff, terminal, and browser",
-   "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/"
   },
   "afcfc3fd8d536ba1": {
    "at": "2026-11-06T01:57:49.984492+00:00",
