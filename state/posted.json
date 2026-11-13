@@ -1,5 +1,5 @@
 {
- "cycle_index": 108,
+ "cycle_index": 109,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -15,6 +15,11 @@
    "at": "2026-09-29T01:23:51.645786+00:00",
    "title": "みんなJevの話してる。やってないの俺だけ",
    "url": "https://zenn.dev/unsoluble_sugar/articles/jev-system-one-model-intro"
+  },
+  "126f79483dcc4f2b": {
+   "at": "2026-11-13T02:20:09.439466+00:00",
+   "title": "GitHub availability report: October 2026",
+   "url": "https://github.blog/news-insights/company-news/github-availability-report-october-2026/"
   },
   "1e13c244fc98598d": {
    "at": "2026-10-06T02:01:28.587449+00:00",
@@ -35,11 +40,6 @@
    "at": "2026-10-12T00:54:52.468747+00:00",
    "title": "AnthropicのAI、未解決殺人事件で警察に虚偽の情報提供　米政権は「通知と是正は義務」と警告",
    "url": "https://www.itmedia.co.jp/news/article/2610/12/2000002192/"
-  },
-  "2973beed11e105e4": {
-   "at": "2026-09-13T23:50:55.998995+00:00",
-   "title": "トランプ政権のサックス氏、AI「ペース調整」論に苦言　「規制がなければできないふりをやめろ」",
-   "url": "https://www.itmedia.co.jp/news/article/2609/14/2000001433/"
   },
   "2a8cb83dd3bd654e": {
    "at": "2026-10-13T02:48:27.332465+00:00",
