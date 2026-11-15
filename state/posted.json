@@ -1,5 +1,5 @@
 {
- "cycle_index": 110,
+ "cycle_index": 111,
  "posted": {
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -181,11 +181,6 @@
    "title": "【図解あり】マルチエージェント設計「15のパターン」　GitHub、Google、Siemensの知見を一気に整理",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/08/news001.html"
   },
-  "a945a513b10da222": {
-   "at": "2026-09-15T23:53:57.193746+00:00",
-   "title": "人が「承認」した無害なコマンドでAIが乗っ取られる　コードエディタCursorを襲った“2行の攻撃”",
-   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/16/news033.html"
-  },
   "afcfc3fd8d536ba1": {
    "at": "2026-11-06T01:57:49.984492+00:00",
    "title": "Google、ワイオミング州のデータセンターなどに170億ドル投資へ　電力費全額負担を約束",
@@ -205,6 +200,11 @@
    "at": "2026-09-17T00:01:14.689168+00:00",
    "title": "LLMのトークン効率化で気をつけたいことまとめ",
    "url": "https://zenn.dev/ml_bear/articles/e5cc1047cba176"
+  },
+  "c0fc906cc6901c56": {
+   "at": "2026-11-15T01:29:10.592019+00:00",
+   "title": "PHP重大脆弱性は「始まり」に過ぎない？　2年前の兆候が示す“次の危機”",
+   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/15/news001.html"
   },
   "c999b40c8688b250": {
    "at": "2026-11-01T00:37:17.746702+00:00",
