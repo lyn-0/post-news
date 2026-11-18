@@ -1,5 +1,5 @@
 {
- "cycle_index": 113,
+ "cycle_index": 114,
  "posted": {
   "03ba69f8abc7803d": {
    "at": "2026-11-16T01:32:07.778794+00:00",
@@ -226,11 +226,6 @@
    "title": "128信金の大規模障害、約6時間で復旧　「原因はサイバー攻撃ではない」",
    "url": "https://www.itmedia.co.jp/news/article/2611/09/2000002999/"
   },
-  "dbd5fc0129b7ce35": {
-   "at": "2026-09-18T23:48:45.436290+00:00",
-   "title": "「サポートの切れるRHELを使い続ける方法」「君のCLAUDE.mdは盛り過ぎ」――“新旧IT”の実践知を探る",
-   "url": "https://atmarkit.itmedia.co.jp/ait/articles/2609/19/news011.html"
-  },
   "dc258ed2410c6f91": {
    "at": "2026-10-30T01:30:10.645689+00:00",
    "title": "アイリスオーヤマの通販サイトに不正アクセス　情報漏えいは「調査中」",
@@ -275,6 +270,11 @@
    "at": "2026-11-04T01:48:55.601097+00:00",
    "title": "PR： 【Q&Aで解説】Windows Server 2016のEOSに「Azure Arc」で備えるアプローチとは？",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/04/news006.html"
+  },
+  "f8a376e343c8392e": {
+   "at": "2026-11-18T03:16:36.226187+00:00",
+   "title": "［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表",
+   "url": "https://www.publickey1.jp/blog/26/aimai_code_2mai_code_2_flash.html"
   },
   "fbe1178c4a1d4f11": {
    "at": "2026-09-30T00:57:56.057562+00:00",
