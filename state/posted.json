@@ -1,5 +1,5 @@
 {
- "cycle_index": 115,
+ "cycle_index": 116,
  "posted": {
   "03ba69f8abc7803d": {
    "at": "2026-11-16T01:32:07.778794+00:00",
@@ -60,6 +60,11 @@
    "at": "2026-10-03T00:52:59.006171+00:00",
    "title": "AI-Slopな日本語を構造レベルで読みやすくするSkill『yomiyasu（よみやす）』を作りました",
    "url": "https://zenn.dev/algoartis/articles/0b1c731881b25c"
+  },
+  "31d88078a382e500": {
+   "at": "2026-11-20T02:47:31.988931+00:00",
+   "title": "おい、 Mutation Test をやれ。テスト品質を、測るために",
+   "url": "https://zenn.dev/mizchi/articles/mutation-test-quality"
   },
   "32b75834a1b53cc2": {
    "at": "2026-11-10T03:56:29.476889+00:00",
@@ -295,11 +300,6 @@
    "at": "2026-10-23T00:21:05.228087+00:00",
    "title": "改めて考える、AIエンジニアリングの今",
    "url": "https://zenn.dev/r_kaga/articles/2fd185c50cea7c"
-  },
-  "ff520853dac92c63": {
-   "at": "2026-09-20T23:47:03.921521+00:00",
-   "title": "jev-lint: コード中の命名やコメントが嘘になってないかを高速に確認",
-   "url": "https://zenn.dev/mizchi/articles/jev-lint-intro"
   }
  }
 }
