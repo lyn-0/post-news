@@ -1,10 +1,15 @@
 {
- "cycle_index": 119,
+ "cycle_index": 120,
  "posted": {
   "03ba69f8abc7803d": {
    "at": "2026-11-16T01:32:07.778794+00:00",
    "title": "OpenAI、AIエージェントが代わりに支払う「ChatGPT Wallet」　カード番号は渡さず、購入ごとに生体認証",
    "url": "https://www.itmedia.co.jp/news/article/2611/16/2000003208/"
+  },
+  "0451980d58e7da7b": {
+   "at": "2026-11-24T05:42:59.458992+00:00",
+   "title": "「ノーコード」の次は何か？　AIを組み込むkintoneの“新しい呼び名”を考える",
+   "url": "https://www.itmedia.co.jp/enterprise/articles/2611/24/news045.html"
   },
   "04bb8f151831266a": {
    "at": "2026-10-25T23:43:20.983705+00:00",
@@ -85,11 +90,6 @@
    "at": "2026-10-24T00:11:14.971780+00:00",
    "title": "Chromeで「HTTPサイトにつなぐと警告」が標準に――Googleが設定変更",
    "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/24/news004.html"
-  },
-  "4873638b77a85cde": {
-   "at": "2026-09-25T00:12:50.664205+00:00",
-   "title": "TypeSafeのJevを正しく驚く、それってLLMでできませんか？",
-   "url": "https://zenn.dev/nwn/articles/824026c76116e0"
   },
   "50dca5b6dff4ce06": {
    "at": "2026-10-20T00:52:46.157789+00:00",
