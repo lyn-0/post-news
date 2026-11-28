@@ -1,5 +1,5 @@
 {
- "cycle_index": 123,
+ "cycle_index": 124,
  "posted": {
   "03ba69f8abc7803d": {
    "at": "2026-11-16T01:32:07.778794+00:00",
@@ -25,11 +25,6 @@
    "at": "2026-10-15T00:14:48.668683+00:00",
    "title": "本当に「判断」していますか？",
    "url": "https://zenn.dev/dyoshikawa/articles/do-you-desicion"
-  },
-  "0f8e936d978b79eb": {
-   "at": "2026-09-29T01:23:51.645786+00:00",
-   "title": "みんなJevの話してる。やってないの俺だけ",
-   "url": "https://zenn.dev/unsoluble_sugar/articles/jev-system-one-model-intro"
   },
   "126f79483dcc4f2b": {
    "at": "2026-11-13T02:20:09.439466+00:00",
@@ -130,6 +125,11 @@
    "at": "2026-10-01T01:00:16.348719+00:00",
    "title": "素材と完成動画を見せるだけ　“型”を覚えたAIに動画編集をどこまで託せるか　GPT-6 Astraで試す",
    "url": "https://www.itmedia.co.jp/news/article/2610/01/2000001910/"
+  },
+  "71a768e59726ce28": {
+   "at": "2026-11-28T03:41:09.396973+00:00",
+   "title": "Claude Code を5〜8個並べても迷わないように、自分用のダッシュボードをバイブコーディングで作った",
+   "url": "https://zenn.dev/nexta_/articles/a3ff76a9f98f1c"
   },
   "74ab5d9d76044eb5": {
    "at": "2026-10-17T23:42:41.512892+00:00",
